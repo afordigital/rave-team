@@ -5,12 +5,12 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import LastNews from "../components/LastNews.astro";
-import { ParallaxSection } from "../components/Parallax";
 import "../styles/global.css";
 import SpaceDivaSection from "../components/SpaceDivaSection.astro";
 import AboutUs from "../components/AboutUs.astro";
 import Form from "../components/Form.astro";
 import OurNewsletter from "../components/OurNewsletter.astro";
+import Parallax from "../components/Parallax.astro";
 ---
 
 <Layout>
@@ -19,7 +19,7 @@ import OurNewsletter from "../components/OurNewsletter.astro";
   <main
     class="w-full h-full relative min-h-screen bg-cover bg-[url('/images/background.webp')] bg-no-repeat bg-center"
   >
-    <ParallaxSection client:only="react" />
+    <Parallax />
     <div
       class="font-luckiest-guy absolute w-full text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center flex flex-col items-center gap-12"
     >
