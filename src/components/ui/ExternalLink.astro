@@ -1,0 +1,18 @@
+<!-- TODO: Buscar meter icono en lucide astro --><!-- ---
+import Icon from "../Icon.astro";
+
+interface Props {
+  class?: string;
+  width?: number;
+  height?: number;
+}
+
+const { class: extraClass, height = 24, width = 24 } = Astro.props;
+---
+
+<Icon
+  {width}
+  {height}
+  name="externalLink"
+  class:list={["lucide lucide-external-link-icon lucide-download", extraClass]}
+/> -->
