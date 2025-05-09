@@ -1,4 +1,5 @@
 ---
+import { BASE_URL } from '../data/consts'
 import type { HTMLAttributes } from 'astro/types'
 
 interface Props {
@@ -7,11 +8,10 @@ interface Props {
   body?: HTMLAttributes<'body'>
 }
 
-const { origin, pathname } = Astro.url
 const { description, title, body } = Astro.props
-const faviconImagePath = origin + '/favicon.svg'
-const previewImagePath = origin + '/preview.png'
-const canonicalUrl = pathname !== '/' ? new URL(pathname, origin).href.replace(/\/$/, '') : origin
+const faviconImagePath = BASE_URL + '/favicon.svg'
+const previewImagePath = BASE_URL + '/preview.png'
+const canonicalUrl = Astro.url.pathname !== '/' ? new URL(Astro.url.pathname, BASE_URL).href.replace(/\/$/, '') : BASE_URL
 const themeColor = '#F165BE'
 ---
 
@@ -34,8 +34,8 @@ const themeColor = '#F165BE'
     <slot name="preconnect" />
     <slot name="preload" />
 
-    <meta property="og:url" content={origin} />
     <meta property="og:title" content={title} />
+    <meta property="og:url" content={BASE_URL} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={previewImagePath} />
     <meta property="og:description" content={description} />
