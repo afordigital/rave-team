@@ -6,15 +6,16 @@ import { news } from "../data/news.ts";
 
 <section class="flex flex-col gap-14 pt-[72px] pb-14 text-white">
   <h2 class="text-6xl font-luckiest-guy self-center">LATEST NEWS</h2>
-  <div class="flex flex-col gap-4">
+  <div class="flex flex-col gap-14">
     {
-      news.map((item) => {
+      news.slice(0, 3).map((item) => {
         return (
           <NewsCard
             key={item}
             title={item.title}
             description={item.description}
             link={item.link}
+            image={item.image}
           />
         );
       })

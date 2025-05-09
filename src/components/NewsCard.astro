@@ -1,30 +1,53 @@
 ---
 import Link from "./Link.astro";
 import ArrowRight from "./ui/ArrowRight.astro";
-const { title, description, link } = Astro.props;
+const { title, description, link, image } = Astro.props;
 ---
 
-<div
-  class="flex flex-col gap-4 bg-white text-primary py-[26px] px-[100px] shadow-[0_0_0_3px_rgba(0,0,0,1)] w-3/5 even:place-items-end odd:self-end diagonal"
->
-  <h3 class="font-luckiest-guy text-2xl">{title}</h3>
-  <p class="text-xl max-w-[696px] description">
-    {description}
-  </p>
-  <Link
-    external
-    to={link}
-    class="group text-xl tracking-wider font-bold flex gap-2 items-center place-content-center w-fit"
+<div class="flex odd:flex-row-reverse even:flex-row news-card">
+  <div
+    class="flex flex-col gap-4 bg-white text-primary h-[200px] px-[100px] w-3/5 diagonal"
   >
-    <span
-      class="relative font-luckiest-guy after:absolute after:bottom-0 after:left-0 after:w-0 after:border-b-2 after:border-black after:border-dotted after:transition-all after:duration-300 after:ease-in-out after:content-[''] group-hover:after:w-full"
+    <h3 class="font-luckiest-guy text-2xl">{title}</h3>
+    <p class="text-xl max-w-[696px] description">
+      {description}
+    </p>
+    <Link
+      external
+      to={link}
+      class="group text-xl tracking-wider font-bold flex gap-2 items-center place-content-center w-fit"
     >
-      Read more
-    </span>
-    <ArrowRight />
-  </Link>
+      <span
+        class="relative font-luckiest-guy after:absolute after:bottom-0 after:left-0 after:w-0 after:border-b-2 after:border-black after:border-dotted after:transition-all after:duration-300 after:ease-in-out after:content-[''] group-hover:after:w-full"
+      >
+        Read more
+      </span>
+      <ArrowRight />
+    </Link>
+  </div>
+  <img src={image} alt="" />
 </div>
 <style>
+  .news-card:nth-child(even) {
+    & .diagonal {
+      clip-path: polygon(0 0, 100% 0, calc(100% - 50px) 100%, 0 100%);
+      align-items: end;
+      text-align: end;
+    }
+    & img {
+      clip-path: polygon(50px 0, 100% 0, 97.5% 100%, 0 100%);
+      transform: translateX(-33px);
+    }
+  }
+  .news-card:nth-child(odd) {
+    & .diagonal {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
+    }
+    & img {
+      clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
+      transform: translateX(33px);
+    }
+  }
   .description {
     shape-outside: circle(50%);
   }
@@ -32,11 +55,4 @@ const { title, description, link } = Astro.props;
   /* .description {
     shape-outside: polygon(0 0, 100% 0, 100% 100%, 5% 100%);
   } */
-
-  .diagonal:nth-child(even) {
-    clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
-  }
-  .diagonal:nth-child(odd) {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 5% 100%);
-  }
 </style>
