@@ -9,16 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.2.6",
     "@astrojs/vercel": "^8.1.4",
-    "@react-spring/web": "^9.7.5",
     "@tailwindcss/vite": "^4.1.4",
-    "@types/react": "18.3.1",
-    "@types/react-dom": "18.3.1",
     "astro": "^5.7.9",
     "astro-icon": "1.1.5",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
     "tailwindcss": "^4.1.4"
   }
 }
