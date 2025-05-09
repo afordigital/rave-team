@@ -1,5 +1,6 @@
 ---
 import Link from "./Link.astro";
+import LogoRave from "../assets/Logo-Rave.svg";
 ---
 
 <nav
@@ -9,11 +10,21 @@ import Link from "./Link.astro";
     <!-- <section
     class="border border-[#aa8be9]/50 bg-gradient-to-b from-[#aa8be9]/50 to-[#aa8be9]/10 rounded-full w-fit h-fit mt-8 backdrop-blur-md"
     > -->
+    <a
+    href="/"
+    class="group"
+  >
     <div
-      class="w-12 h-12 bg-[#aa8be9] text-white flex items-center justify-center rounded-full"
+      class="w-[99px] h-[96px] rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-105 group-hover:shadow-lg"
+      style="
+        background: linear-gradient(180deg, #B485FF4D 30%, #B485FF 100%);
+        box-shadow: inset 3.23px 3.23px 2.58px rgba(255, 255, 255, 0.08);
+      "
     >
-      RS
+      <LogoRave class="w-[65px] h-[62px]" />
     </div>
+  </a>
+
     <!-- </section> -->
     <ul
       class="flex text-2xl tracking-wider inner-text-shadow font-luckiest-guy items-center gap-8 text-white"
