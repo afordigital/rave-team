@@ -1,0 +1,55 @@
+---
+import { BASE_URL } from '../data/consts'
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props {
+  title: string
+  description: string
+  body?: HTMLAttributes<'body'>
+}
+
+const themeColor = '#F165BE'
+const faviconImagePath = BASE_URL + '/favicon.svg'
+const previewImagePath = BASE_URL + '/preview.png'
+const canonicalUrl = Astro.url.pathname !== '/' ? new URL(Astro.url.pathname, BASE_URL).href : BASE_URL
+const { description, title, body } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <slot name="head" />
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="apple-touch-icon" href={faviconImagePath} />
+    <link rel="icon" type="image/svg+xml" href={faviconImagePath} />
+    <meta name="theme-color" content={themeColor} />
+
+    <slot name="preconnect" />
+    <slot name="preload" />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={BASE_URL} />
+    <meta property="og:image" content={previewImagePath} />
+    <meta property="og:description" content={description} />
+
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:image" content={previewImagePath} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <slot name="styles" />
+    <slot name="scripts" />
+  </head>
+
+  <body {...body}>
+    <slot />
+  </body>
+</html>

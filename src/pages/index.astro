@@ -1,19 +1,21 @@
 ---
 import Icon from "../components/Icon.astro";
 import Link from "../components/Link.astro";
-import Layout from "../layouts/Layout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import LastNews from "../components/LastNews.astro";
-import "../styles/global.css";
-import SpaceDivaSection from "../components/SpaceDivaSection.astro";
 import AboutUs from "../components/AboutUs.astro";
 import Form from "../components/Form.astro";
 import OurNewsletter from "../components/OurNewsletter.astro";
 import Parallax from "../components/Parallax.astro";
+import "../styles/global.css";
+
+const title = 'Rave Team'
+const description = 'flashy stories 💫 deranged experiences'
 ---
 
-<Layout>
+<BaseLayout {title} {description}>
   <Navbar />
   <main
     class="w-full h-full relative min-h-screen bg-cover bg-[url('/images/background.webp')] bg-no-repeat bg-center"
@@ -45,4 +47,4 @@ import Parallax from "../components/Parallax.astro";
   <AboutUs />
   <Form />
   <Footer />
-</Layout>
+</BaseLayout>
