@@ -1,0 +1,54 @@
+---
+import { news } from "../data/news";
+import "../styles/global.css";
+import NewsCard from "../components/NewsCard.astro";
+import Categories from "../components/ui/Categories.astro";
+
+const categories = ["All", ...new Set(news.map(n => n.category))];
+---
+<section class="flex flex-col gap-14 pt-[72px] pb-14 text-white">
+  <h2 class="text-6xl font-luckiest-guy self-center">LATEST NEWS</h2>
+  <Categories categories={categories} />
+
+  <!-- List filtered -->
+  <div id="newsList" class="flex flex-col gap-14">
+    {news.map((item, i) => (
+      <NewsCard
+        key={i}
+        title={item.title}
+        description={item.description}
+        link={item.link}
+        image={item.image}
+        category={item.category}
+      />
+    ))}
+  </div>
+
+ 
+</section>
+
+<script type="module">
+  const buttons = document.querySelectorAll(".filter-btn");
+  const cards = document.querySelectorAll(".news-card");
+
+  buttons.forEach(button => {
+    button.addEventListener("click", (e) => {
+      const selectedCategory = e.target.dataset.category;
+
+      cards.forEach(card => {
+        const cardCategory = card.dataset.category;
+        card.style.display = (selectedCategory === "All" || cardCategory === selectedCategory)
+          ? "flex"
+          : "none";
+      });
+
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-white', 'text-primary');
+        btn.classList.add('bg-transparent', 'text-white');
+      });
+
+      e.target.classList.add('bg-white', 'text-primary');
+      e.target.classList.remove('bg-transparent', 'text-white');
+    });
+  });
+</script>

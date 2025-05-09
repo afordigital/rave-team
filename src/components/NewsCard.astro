@@ -1,10 +1,10 @@
 ---
 import Link from "./Link.astro";
 import ArrowRight from "./ui/ArrowRight.astro";
-const { title, description, link, image } = Astro.props;
+const { title, description, link, category, image } = Astro.props;
 ---
 
-<div class="flex odd:flex-row-reverse even:flex-row news-card">
+<div class="flex odd:flex-row-reverse even:flex-row news-card" data-category={category}>
   <div
     class="flex flex-col gap-4 bg-white text-primary h-[200px] px-[100px] w-3/5 diagonal"
   >
