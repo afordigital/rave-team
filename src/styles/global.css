@@ -11,7 +11,8 @@
   --text-hero-title--line-height: 1;
   --text-hero-action: clamp(1rem, 2vw, 1.5rem);
   --text-hero-action--line-height: 1;
-  --text-subtitle: 64px;
+  --text-section-title: clamp(2.5rem, 3vw, 4rem);
+  --text-section-title--line-height: 1;
 }
 
 @layer components {
