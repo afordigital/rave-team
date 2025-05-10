@@ -1,11 +1,15 @@
-<section class="text-white grid grid-cols-2 max-w-7xl w-full mx-auto">
+<section class="text-white gap-16 flex flex-col lg:flex-row-reverse max-w-7xl w-full mx-auto px-4">
+  <hgroup class="flex flex-col text-center gap-y-1">
+    <h2 class="text-section-title font-luckiest-guy">Want to invest?</h2>
+    <p class="text-xl">We're not going to say no, message us 😊</p>
+  </hgroup>
   <form
-    action="https://api.web3forms.com/submit"
-    method="POST"
     id="form"
-    data-astro-reload
+    method="POST"
     novalidate
-    class="needs-validation flex flex-col gap-4 max-w-[450px]"
+    data-astro-reload
+    action="https://api.web3forms.com/submit"
+    class="needs-validation flex flex-col gap-4 max-w-[450px] mx-auto w-full"
   >
     <input
       type="hidden"
@@ -24,9 +28,9 @@
       class="py-3 px-4 shadow-[4px_2px_0_rgba(250,250,250,1)] border-1 border-color-cs-gray"
     >
       <input
-        placeholder="Introduce your name"
         name="name"
         type="text"
+        placeholder="Introduce your name"
         class="outline-none placeholder:text-[#E1E1E1]"
       />
     </label>
@@ -51,9 +55,9 @@
         class="outline-none w-full min-h-[50px] max-h-[150px] placeholder:text-[#E1E1E1]"
       ></textarea>
     </label>
-    <div class="w-full">
+    <div class="w-full mx-auto">
       <div
-        class="h-captcha"
+        class="h-captcha flex justify-center"
         data-captcha="true"
         data-lang="en"
         data-theme="dark"
@@ -63,13 +67,11 @@
     <button
       type="submit"
       class="bg-white hover:bg-[#e1d8eb] cursor-pointer text-primary w-full h-[46px] font-luckiest-guy"
-      >Send Message</button
     >
+      Send Message
+    </button>
     <div id="result" class="mt-3 text-center"></div>
   </form>
-  <article>
-    <h2 class="text-subtitle font-luckiest-guy">Want to invest?</h2>
-  </article>
   <script src="https://web3forms.com/client/script.js" async defer></script>
 </section>
 
