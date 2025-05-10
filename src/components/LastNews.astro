@@ -4,22 +4,32 @@ import NewsCard from "./NewsCard.astro";
 import { news } from "../data/news.ts";
 ---
 
-<section class="flex flex-col gap-14 pt-[72px] pb-14 text-white">
+<section
+  class="flex flex-col justify-center items-center gap-14 pt-[72px] pb-14 text-white"
+>
   <h2 class="text-6xl font-luckiest-guy self-center">LATEST NEWS</h2>
-  <div class="flex flex-col gap-14">
-    {
-      news.slice(0, 3).map((item) => {
-        return (
-          <NewsCard
-            key={item}
-            title={item.title}
-            description={item.description}
-            link={item.link}
-            image={item.image}
-          />
-        );
-      })
-    }
+  <div
+    class="grid w-full grid-cols-[368px_1fr_1fr_1fr] grid-rows-[223px_223px_315px_124px] gap-5 h-[900px] max-w-7xl"
+  >
+    <div class="col-span-4 flex">
+      <div class="bg-purple-500 w-[357px] h-full diagonal"></div>
+      <div class="bg-white grow-1 opposite-diagonal"></div>
+    </div>
+    <div class="row-span-3 row-start-2 flex flex-col">
+      <div class="bg-purple-500 w-full h-[275px] under-diagonal"></div>
+      <div class="bg-white grow-1 upper-diagonal"></div>
+    </div>
+    <div class="col-span-3 row-start-2 flex">
+      <div class="bg-purple-500 w-[200px] h-full diagonal"></div>
+      <div class="bg-white grow-1 opposite-diagonal"></div>
+    </div>
+    <div class="col-span-3 col-start-2 row-start-3 flex">
+      <div class="bg-purple-500 w-[252px] h-full diagonal"></div>
+      <div class="bg-white grow-1 opposite-diagonal"></div>
+    </div>
+    <div class="col-span-3 col-start-2 row-start-4">
+      <div class="h-full bg-black button-diagonal"></div>
+    </div>
   </div>
   <Link
     to="/last-news"
@@ -28,3 +38,22 @@ import { news } from "../data/news.ts";
     VIEW ALL
   </Link>
 </section>
+<style>
+  .diagonal {
+    clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
+  }
+  .opposite-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
+    margin-left: -33px;
+  }
+  .button-diagonal {
+    clip-path: polygon(0 0, 100% 0, calc(100% - 50px) 100%, 0 100%);
+  }
+  .under-diagonal {
+    clip-path: polygon(0 1%, 100% 0, 100% 100%, 0 calc(100% - 50px));
+  }
+  .upper-diagonal {
+    clip-path: polygon(0 1%, 100% 50px, 100% 100%, 0 100%);
+    margin-top: -33px;
+  }
+</style>
