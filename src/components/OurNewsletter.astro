@@ -1,24 +1,25 @@
 ---
-import Download from "./ui/Download.astro";
+import Download from './ui/Download.astro'
 ---
 
 <section class="text-white flex flex-col justify-end h-[480px] relative">
-  <h2 class="text-6xl font-luckiest-guy ml-[54px] mb-12">
+  <h2 class="text-section-title font-luckiest-guy text-center lg:text-left pb-12 px-4 lg:px-14">
     JOIN OUR NEWSLETTER
   </h2>
-  <form class="flex gap-4 ml-[54px]">
+  <form class="flex gap-4 flex-col px-4 lg:flex-row lg:px-14">
     <input
       type="email"
-      name="suscribe"
       id="suscribe"
+      name="suscribe"
       placeholder="Introduce your email"
-      class="border border-white px-[15px] py-3 w-[641px] placeholder:text-[#E1E1E1] font-semibold text-xl bg-[#3B2F45] input-search"
+      class="border border-white px-[15px] w-full py-3 lg:w-[641px] placeholder:text-[#E1E1E1] font-semibold text-xl bg-[#3B2F45] input-search"
     />
     <button
       type="submit"
       class="bg-white px-[50px] py-4 text-primary font-luckiest-guy self-center text-xl transition duration-150 ease-in-out input-button cursor-pointer"
-      >SUSCRIBE</button
     >
+      SUSCRIBE
+    </button>
   </form>
   <div
     class="flex h-[200px] bg-secondary background-diagonal px-[54px] pb-7 items-end justify-end"
