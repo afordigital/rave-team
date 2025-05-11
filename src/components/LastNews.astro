@@ -2,41 +2,118 @@
 import Link from "./Link.astro";
 import NewsCard from "./NewsCard.astro";
 import { news } from "../data/news.ts";
+import ArrowRight from "./ui/ArrowRight.astro";
 ---
 
 <section
-  class="flex flex-col justify-center items-center gap-14 pt-[72px] pb-14 text-white"
+  class="flex flex-col justify-center items-center gap-14 pt-[72px] pb-14 text-white font-luckiest-guy"
 >
   <h2 class="text-6xl font-luckiest-guy self-center">LATEST NEWS</h2>
-  <div
-    class="grid w-full grid-cols-[368px_1fr_1fr_1fr] grid-rows-[223px_223px_315px_124px] gap-5 h-[900px] max-w-7xl"
+  <article
+    class="grid w-full grid-cols-[368px_1fr_1fr_1fr] grid-rows-[223px_223px_315px_124px] gap-5 max-w-7xl text-black"
   >
     <div class="col-span-4 flex">
-      <div class="bg-purple-500 w-[357px] h-full diagonal"></div>
-      <div class="bg-white grow-1 opposite-diagonal"></div>
+      <div class="image w-[357px] h-full diagonal"></div>
+      <div
+        class="bg-white grow-1 opposite-diagonal px-[90px] py-7 flex flex-col gap-5"
+        style="line-height: normal;"
+      >
+        <h3 class="font-luckiest-guy text-[47px]">
+          A game development studio creating projects
+        </h3>
+        <Link
+          external
+          to="/"
+          class="group text-lg tracking-wider flex gap-2 items-center place-content-center w-fit"
+        >
+          <span
+            class="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:border-b-2 after:border-black after:border-dotted after:transition-all after:duration-300 after:ease-in-out after:content-[''] group-hover:after:w-full"
+          >
+            Read more
+          </span>
+          <ArrowRight />
+        </Link>
+      </div>
     </div>
     <div class="row-span-3 row-start-2 flex flex-col">
-      <div class="bg-purple-500 w-full h-[275px] under-diagonal"></div>
-      <div class="bg-white grow-1 upper-diagonal"></div>
+      <div class="image w-full h-[275px] under-diagonal"></div>
+      <div
+        class="bg-white grow-1 upper-diagonal flex flex-col gap-5 px-9 justify-center"
+        style="line-height: normal;"
+      >
+        <h3 class="font-luckiest-guy text-[47px] max-w-[360px]">
+          we would play ourselves first
+        </h3>
+        <Link
+          external
+          to="/"
+          class="group text-lg tracking-wider flex gap-2 items-center place-content-center w-fit"
+        >
+          <span
+            class="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:border-b-2 after:border-black after:border-dotted after:transition-all after:duration-300 after:ease-in-out after:content-[''] group-hover:after:w-full"
+          >
+            Read more
+          </span>
+          <ArrowRight />
+        </Link>
+      </div>
     </div>
     <div class="col-span-3 row-start-2 flex">
-      <div class="bg-purple-500 w-[200px] h-full diagonal"></div>
-      <div class="bg-white grow-1 opposite-diagonal"></div>
+      <div class="image w-[250px] h-full diagonal"></div>
+      <div
+        class="bg-white grow-1 opposite-diagonal px-[90px] py-7 flex flex-col gap-5"
+        style="line-height: normal;"
+      >
+        <h3 class="font-luckiest-guy text-[47px] max-w-[229px]">
+          creating projects
+        </h3>
+        <Link
+          external
+          to="/"
+          class="group text-lg tracking-wider flex gap-2 items-center place-content-center w-fit"
+        >
+          <span
+            class="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:border-b-2 after:border-black after:border-dotted after:transition-all after:duration-300 after:ease-in-out after:content-[''] group-hover:after:w-full"
+          >
+            Read more
+          </span>
+          <ArrowRight />
+        </Link>
+      </div>
     </div>
     <div class="col-span-3 col-start-2 row-start-3 flex">
-      <div class="bg-purple-500 w-[252px] h-full diagonal"></div>
-      <div class="bg-white grow-1 opposite-diagonal"></div>
+      <div class="image w-[302px] h-full diagonal"></div>
+      <div
+        class="bg-white grow-1 opposite-diagonal px-[90px] py-7 flex flex-col gap-5"
+        style="line-height: normal;"
+      >
+        <h3 class="font-luckiest-guy text-[47px] max-w-[360px]">
+          we would play ourselves first
+        </h3>
+        <Link
+          external
+          to="/"
+          class="group text-lg tracking-wider flex gap-2 items-center place-content-center w-fit"
+        >
+          <span
+            class="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:border-b-2 after:border-black after:border-dotted after:transition-all after:duration-300 after:ease-in-out after:content-[''] group-hover:after:w-full"
+          >
+            Read more
+          </span>
+          <ArrowRight />
+        </Link>
+      </div>
     </div>
-    <div class="col-span-3 col-start-2 row-start-4">
-      <div class="h-full bg-black button-diagonal"></div>
+    <div
+      class="col-span-3 col-start-2 row-start-4 bg-black button-diagonal text-white flex justify-center items-center"
+    >
+      <Link to="/last-news" class="text-[42px] flex gap-2 items-center">
+        REad More updates and news <ArrowRight
+          class="fill-white w-[42px] h-[42px]"
+        /></Link
+      >
     </div>
-  </div>
-  <Link
-    to="/last-news"
-    class="bg-white px-[50px] py-4 text-primary font-luckiest-guy self-center text-xl hover:shadow-[3px_3px_0_rgba(0,0,0,1)] transition duration-150 ease-in-out hover:translate-[8px] shadow-[10px_10px_0_rgba(0,0,0,1)]"
-  >
-    VIEW ALL
-  </Link>
+  </article>
 </section>
 <style>
   .diagonal {
@@ -55,5 +132,9 @@ import { news } from "../data/news.ts";
   .upper-diagonal {
     clip-path: polygon(0 1%, 100% 50px, 100% 100%, 0 100%);
     margin-top: -33px;
+  }
+  .image {
+    background-image: url("https://i.imgur.com/1ZDE2y2.png");
+    background-size: cover;
   }
 </style>
