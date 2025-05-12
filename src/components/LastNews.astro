@@ -12,15 +12,17 @@ import ArrowRight from "./ui/ArrowRight.astro";
   <article
     class="grid w-full grid-cols-[368px_1fr_1fr_1fr] grid-rows-[223px_223px_315px_124px] gap-5 max-w-7xl text-black"
   >
-    <div class="col-span-4 flex">
-      <div class="image w-[357px] h-full diagonal"></div>
+    <div class="first-news flex">
+      <img
+        src="https://i.imgur.com/1ZDE2y2.png"
+        alt="img"
+        class="object-cover"
+      />
       <div
-        class="bg-white grow-1 opposite-diagonal px-[90px] py-7 flex flex-col gap-5"
+        class="bg-white grow-1 flex flex-col gap-5"
         style="line-height: normal;"
       >
-        <h3 class="font-luckiest-guy text-[47px]">
-          A game development studio creating projects
-        </h3>
+        <h3 class="text-[47px]">A game development studio creating projects</h3>
         <Link
           external
           to="/"
@@ -35,15 +37,17 @@ import ArrowRight from "./ui/ArrowRight.astro";
         </Link>
       </div>
     </div>
-    <div class="row-span-3 row-start-2 flex flex-col">
-      <div class="image w-full h-[275px] under-diagonal"></div>
+    <div class="second-news flex">
+      <img
+        src="https://i.imgur.com/1ZDE2y2.png"
+        alt="img"
+        class="object-cover"
+      />
       <div
-        class="bg-white grow-1 upper-diagonal flex flex-col gap-5 px-9 justify-center"
+        class="bg-white grow-1 flex flex-col gap-5"
         style="line-height: normal;"
       >
-        <h3 class="font-luckiest-guy text-[47px] max-w-[360px]">
-          we would play ourselves first
-        </h3>
+        <h3 class="text-[47px]">A game development studio creating projects</h3>
         <Link
           external
           to="/"
@@ -58,15 +62,17 @@ import ArrowRight from "./ui/ArrowRight.astro";
         </Link>
       </div>
     </div>
-    <div class="col-span-3 row-start-2 flex">
-      <div class="image w-[250px] h-full diagonal"></div>
+    <div class="third-news flex">
+      <img
+        src="https://i.imgur.com/1ZDE2y2.png"
+        alt="img"
+        class="object-cover"
+      />
       <div
-        class="bg-white grow-1 opposite-diagonal px-[90px] py-7 flex flex-col gap-5"
+        class="bg-white grow-1 flex flex-col gap-5"
         style="line-height: normal;"
       >
-        <h3 class="font-luckiest-guy text-[47px] max-w-[229px]">
-          creating projects
-        </h3>
+        <h3 class="text-[47px]">creating projects</h3>
         <Link
           external
           to="/"
@@ -81,15 +87,17 @@ import ArrowRight from "./ui/ArrowRight.astro";
         </Link>
       </div>
     </div>
-    <div class="col-span-3 col-start-2 row-start-3 flex">
-      <div class="image w-[302px] h-full diagonal"></div>
+    <div class="fourth-news flex">
+      <img
+        src="https://i.imgur.com/1ZDE2y2.png"
+        alt="img"
+        class="object-cover"
+      />
       <div
         class="bg-white grow-1 opposite-diagonal px-[90px] py-7 flex flex-col gap-5"
         style="line-height: normal;"
       >
-        <h3 class="font-luckiest-guy text-[47px] max-w-[360px]">
-          we would play ourselves first
-        </h3>
+        <h3 class="text-[47px]">we would play ourselves first</h3>
         <Link
           external
           to="/"
@@ -116,25 +124,71 @@ import ArrowRight from "./ui/ArrowRight.astro";
   </article>
 </section>
 <style>
-  .diagonal {
-    clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
+  .first-news {
+    grid-column: span 4 / span 4;
+    & img {
+      width: 357px;
+      height: 100%;
+      clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
+    }
+    & div {
+      padding: 28px 90px;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
+      margin-left: -33px;
+    }
   }
-  .opposite-diagonal {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
-    margin-left: -33px;
+  .second-news {
+    flex-direction: column;
+    grid-row: span 3 / span 3;
+    grid-row-start: 2;
+    & img {
+      width: 100%;
+      min-height: 275px;
+      clip-path: polygon(0 1%, 100% 0, 100% 100%, 0 calc(100% - 50px));
+    }
+    & div {
+      padding: 0 28px 0 28px;
+      justify-content: center;
+      clip-path: polygon(0 1%, 100% 50px, 100% 100%, 0 100%);
+      margin-top: -33px;
+    }
+  }
+  .third-news {
+    grid-column: span 3 / span 3;
+    grid-row-start: 2;
+    & img {
+      width: 250px;
+      height: 100%;
+      clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
+    }
+    & div {
+      padding: 28px 90px;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
+      margin-left: -33px;
+      & h3 {
+        max-width: 229px;
+      }
+    }
+  }
+  .fourth-news {
+    grid-column: span 3 / span 3;
+    grid-column-start: 2;
+    grid-row-start: 3;
+    & img {
+      width: 302px;
+      height: 100%;
+      clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
+    }
+    & div {
+      padding: 28px 90px;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
+      margin-left: -33px;
+      & h3 {
+        max-width: 360px;
+      }
+    }
   }
   .button-diagonal {
     clip-path: polygon(0 0, 100% 0, calc(100% - 50px) 100%, 0 100%);
-  }
-  .under-diagonal {
-    clip-path: polygon(0 1%, 100% 0, 100% 100%, 0 calc(100% - 50px));
-  }
-  .upper-diagonal {
-    clip-path: polygon(0 1%, 100% 50px, 100% 100%, 0 100%);
-    margin-top: -33px;
-  }
-  .image {
-    background-image: url("https://i.imgur.com/1ZDE2y2.png");
-    background-size: cover;
   }
 </style>

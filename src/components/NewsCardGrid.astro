@@ -1,0 +1,69 @@
+---
+import Link from "./Link.astro";
+import ArrowRight from "./ui/ArrowRight.astro";
+---
+
+<div class="first-new flex font-luckiest-guy">
+  <img
+    src="https://i.imgur.com/1ZDE2y2.png"
+    alt="img"
+    class="w-full object-cover"
+  />
+  <div class="bg-white grow-1 flex gap-5" style="line-height: normal;">
+    <h3>A game development studio creating projects</h3>
+    <Link
+      external
+      to="/"
+      class="group text-lg tracking-wider flex gap-2 items-center place-content-center w-fit"
+    >
+      <span
+        class="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:border-b-2 after:border-black after:border-dotted after:transition-all after:duration-300 after:ease-in-out after:content-[''] group-hover:after:w-full"
+      >
+        Read more
+      </span>
+      <ArrowRight />
+    </Link>
+  </div>
+</div>
+<style>
+  .first-new {
+    grid-row-start: 2;
+    grid-row: span 3 / span 3;
+    flex-direction: column;
+    & image {
+      width: 100%;
+      height: 275px;
+      clip-path: polygon(0 1%, 100% 0, 100% 100%, 0 calc(100% - 50px));
+    }
+    & > div {
+      padding: 28px 90px;
+      flex-direction: column;
+      clip-path: polygon(0 1%, 100% 50px, 100% 100%, 0 100%);
+      margin-top: -33px;
+      & h3 {
+        font-size: 47px;
+      }
+    }
+  }
+  .diagonal {
+    clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
+  }
+  .opposite-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
+    margin-left: -33px;
+  }
+  .button-diagonal {
+    clip-path: polygon(0 0, 100% 0, calc(100% - 50px) 100%, 0 100%);
+  }
+  .under-diagonal {
+    clip-path: polygon(0 1%, 100% 0, 100% 100%, 0 calc(100% - 50px));
+  }
+  .upper-diagonal {
+    clip-path: polygon(0 1%, 100% 50px, 100% 100%, 0 100%);
+    margin-top: -33px;
+  }
+  .image {
+    background-image: url("https://i.imgur.com/1ZDE2y2.png");
+    background-size: cover;
+  }
+</style>
