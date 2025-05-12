@@ -3,5 +3,6 @@ export interface newsType {
   description: string;
   link: string;
   category: string;
-  image?: string;
+  image: string;
+  style?: "first-news" | "second-news" | "third-news" | "fourth-news";
 }
