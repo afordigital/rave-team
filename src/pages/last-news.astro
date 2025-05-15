@@ -4,57 +4,61 @@ import NewsCard from "../components/NewsCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Categories from "../components/ui/Categories.astro";
 
-const title = 'Rave Team'
-const description = 'flashy stories 💫 deranged experiences'
-const categories = ['All', ...new Set(news.map(n => n.category))];
+const title = "Rave Team";
+const description = "flashy stories 💫 deranged experiences";
+const categories = ["All", ...new Set(news.map((n) => n.category))];
 ---
 
 <BaseLayout {title} {description}>
   <Fragment slot="head">
     <script>
-      const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
-      const cards = document.querySelectorAll<HTMLDivElement>('.news-card');
+      const buttons =
+        document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+      const cards = document.querySelectorAll<HTMLDivElement>(".news-card");
 
-      buttons.forEach(button => {
-        button.addEventListener('click', (event: MouseEvent) => {
-          const target = event.target as HTMLButtonElement
+      buttons.forEach((button) => {
+        button.addEventListener("click", (event: MouseEvent) => {
+          const target = event.target as HTMLButtonElement;
           const selectedCategory = target.dataset.category;
 
-          cards.forEach(card => {
+          cards.forEach((card) => {
             const cardCategory = card.dataset.category;
-            card.style.display = (selectedCategory === 'All' || cardCategory === selectedCategory)
-              ? 'flex'
-              : 'none';
+            card.style.display =
+              selectedCategory === "All" || cardCategory === selectedCategory
+                ? "flex"
+                : "none";
           });
 
-          buttons.forEach(btn => {
-            btn.classList.remove('bg-white', 'text-primary');
-            btn.classList.add('bg-transparent', 'text-white');
+          buttons.forEach((btn) => {
+            btn.classList.remove("bg-white", "text-primary");
+            btn.classList.add("bg-transparent", "text-white");
           });
-
-          target.classList.add('bg-white', 'text-primary');
-          target.classList.remove('bg-transparent', 'text-white');
+          target.classList.add("bg-white", "text-primary");
+          target.classList.remove("bg-transparent", "text-white");
         });
       });
     </script>
   </Fragment>
-
   <section class="flex flex-col gap-14 pt-[72px] pb-14 text-white">
     <h2 class="text-6xl font-luckiest-guy self-center">LATEST NEWS</h2>
     <Categories categories={categories} />
-
     <!-- List filtered -->
-    <div id="newsList" class="flex flex-col gap-14">
-      {news.map((item, i) => (
-        <NewsCard
-          key={i}
-          title={item.title}
-          description={item.description}
-          link={item.link}
-          image={item.image}
-          category={item.category}
-        />
-      ))}
+    <div
+      id="newsList"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center"
+    >
+      {
+        news.map((item, i) => (
+          <NewsCard
+            key={i}
+            title={item.title}
+            description={item.description}
+            link={item.link}
+            image={item.image}
+            category={item.category}
+          />
+        ))
+      }
     </div>
   </section>
 </BaseLayout>
