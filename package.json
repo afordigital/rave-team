@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^8.1.4",
+    "@iconify-json/lucide": "^1.2.44",
     "@tailwindcss/vite": "^4.1.4",
     "astro": "^5.7.9",
     "astro-icon": "1.1.5",

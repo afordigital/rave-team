@@ -3,6 +3,8 @@ import { news } from "../data/news";
 import NewsCard from "../components/NewsCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Categories from "../components/ui/Categories.astro";
+import Link from "../components/Link.astro";
+import Icon from "../components/Icon.astro";
 
 const title = "Rave Team";
 const description = "flashy stories 💫 deranged experiences";
@@ -40,7 +42,13 @@ const categories = ["All", ...new Set(news.map((n) => n.category))];
     </script>
   </Fragment>
   <section class="flex flex-col gap-14 pt-[72px] pb-14 text-white">
-    <h2 class="text-6xl font-luckiest-guy self-center">LATEST NEWS</h2>
+    <Link
+      to="/"
+      class="flex items-center gap-3 self-center text-2xl sm:text-3xl font-luckiest-guy text-white no-underline hover:no-underline focus:outline-none focus:ring-0"
+    >
+      <Icon name="lucide:arrow-left" class="w-6 h-6" />
+      LATEST NEWS
+    </Link>
     <Categories categories={categories} />
     <!-- List filtered -->
     <div
