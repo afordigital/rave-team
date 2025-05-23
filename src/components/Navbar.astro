@@ -1,6 +1,15 @@
 ---
 import Link from "./Link.astro";
 import LogoRave from "../assets/Logo-Rave.svg";
+
+
+
+const menuItems = [
+  { to: "#games", label: "GAMES" },
+  { to: "#news", label: "NEWS" },
+  { to: "#about", label: "ABOUT" },
+  { to: "#contact", label: "CONTACT" },
+];
 ---
 
 <nav
@@ -10,40 +19,71 @@ import LogoRave from "../assets/Logo-Rave.svg";
     <!-- <section
     class="border border-[#aa8be9]/50 bg-gradient-to-b from-[#aa8be9]/50 to-[#aa8be9]/10 rounded-full w-fit h-fit mt-8 backdrop-blur-md"
     > -->
-    <a
-    href="/"
-    class="group"
-  >
-    <div
-      class="w-[99px] h-[96px] rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-105 group-hover:shadow-lg"
-      style="
+    <a href="/" class="group">
+      <div
+        class="w-[99px] h-[96px] rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-105 group-hover:shadow-lg"
+        style="
         background: linear-gradient(180deg, #B485FF4D 30%, #B485FF 100%);
         box-shadow: inset 3.23px 3.23px 2.58px rgba(255, 255, 255, 0.08);
       "
-    >
-      <LogoRave class="w-[65px] h-[62px]" />
-    </div>
-  </a>
-
+      >
+        <LogoRave class="w-[65px] h-[62px]" />
+      </div>
+    </a>
     <!-- </section> -->
+
     <ul
       class="flex text-2xl tracking-wider inner-text-shadow font-luckiest-guy items-center gap-8 text-white"
     >
       <li class="theme-shadow-text lg:hidden">
-        <Link to="#">MENU</Link>
+        <Link to="#" class="w-full text-left"> MENU </Link>
       </li>
-      <li class="hidden theme-shadow-text lg:block">
-        <Link to="#">GAMES</Link>
-      </li>
-      <li class="hidden theme-shadow-text lg:block">
-        <Link to="#">NEWS</Link>
-      </li>
-      <li class="hidden theme-shadow-text lg:block">
-        <Link to="#">ABOUT</Link>
-      </li>
-      <li class="hidden theme-shadow-text lg:block">
-        <Link to="#">CONTACT</Link>
-      </li>
+      {        menuItems.map(({ to, label }) => (
+          <li class="hidden theme-shadow-text lg:block">
+            <Link to={to} class= "nav-link relative inline-block after:block after:absolute after:left-0 after:bottom-0 after:h-[4px] after:w-0 after:bg-current after:transition-all after:duration-400 hover:after:w-full focus:after:w-full">
+              {label}
+            </Link>
+          </li>
+        ))}
     </ul>
   </section>
 </nav>
+
+<script type="module">
+
+  const links = document.querySelectorAll(".nav-link");
+  const activeClass = "after:w-full";
+
+  function updateActiveLinkByHash(hashValue) {
+    links.forEach((link) => {
+      link.classList.toggle(activeClass, link.getAttribute("href") === hashValue);
+    });
+  }
+
+  updateActiveLinkByHash(window.location.hash || "");
+
+  window.addEventListener("hashchange", () => {
+    updateActiveLinkByHash(window.location.hash || "");
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const id = `#${entry.target.id}`;
+        const link = document.querySelector(`.nav-link[href="${id}"]`);
+        if (link) {
+          link.classList.toggle(activeClass, entry.isIntersecting);
+        }
+      });
+    },
+    { threshold: 0.6 }
+  );
+
+  links.forEach((link) => {
+    const sectionId = link.getAttribute("href");
+    if (sectionId?.startsWith("#")) {
+      const section = document.querySelector(sectionId);
+      if (section) observer.observe(section);
+    }
+  });
+</script>
