@@ -1,8 +1,14 @@
-<section id="contact" class="text-white gap-16 flex flex-col lg:flex-row-reverse max-w-7xl w-full mx-auto px-4">
-  <hgroup class="flex flex-col text-center gap-y-1">
-    <h2 class="text-section-title font-luckiest-guy">Want to invest?</h2>
-    <p class="text-xl">We're not going to say no, message us 😊</p>
-  </hgroup>
+<section
+  id="contact"
+  class="text-white py-12 flex flex-col lg:flex-row-reverse max-w-6xl w-full mx-auto px-4"
+>
+  <article class="flex flex-col gap-y-1">
+    <hgroup class="flex flex-col text-left gap-y-1">
+      <h2 class="text-section-title font-luckiest-guy">Want to invest?</h2>
+      <p class="text-xl">We're not going to say no, message us 😊</p>
+    </hgroup>
+    <!-- <img src="/images/Supernova.png" alt="Supernova" /> -->
+  </article>
   <form
     id="form"
     method="POST"
@@ -57,7 +63,8 @@
     </label>
     <div class="w-full mx-auto">
       <div
-        class="h-captcha flex justify-center"
+        id="captcha-container"
+        class="h-captcha justify-center hidden"
         data-captcha="true"
         data-lang="en"
         data-theme="dark"
@@ -66,7 +73,7 @@
     </div>
     <button
       type="submit"
-      class="bg-white hover:bg-[#e1d8eb] cursor-pointer text-primary w-full h-[46px] font-luckiest-guy"
+      class="bg-white px-[50px] w-full py-4 text-primary font-luckiest-guy self-center text-xl transition duration-150 ease-in-out input-button cursor-pointer"
     >
       Send Message
     </button>
@@ -75,60 +82,82 @@
   <script src="https://web3forms.com/client/script.js" async defer></script>
 </section>
 
+<style>
+  .input-button {
+    box-shadow: 5px 5px 0 0 #ededed;
+    transition:
+      box-shadow 0.15s ease-in-out,
+      transform 0.15s ease-in-out;
+  }
+  .input-button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+</style>
+
 <script is:inline>
   // use astro:page-load event if you are using View Transitions
 
-  document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-      const form = document.getElementById("form");
-      const result = document.getElementById("result");
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("form");
+    const result = document.getElementById("result");
+    const captcha = document.getElementById("captcha-container");
 
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        form.classList.add("was-validated");
-        if (!form.checkValidity()) {
-          form.querySelectorAll(":invalid")[0].focus();
-          return;
-        }
-        const formData = new FormData(form);
-        const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
+    let captchaTriggered = false;
 
-        result.innerHTML = "Sending...";
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      form.classList.add("was-validated");
 
-        fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: json,
+      if (!form.checkValidity()) {
+        form.querySelectorAll(":invalid")[0].focus();
+        return;
+      }
+
+      if (!captchaTriggered) {
+        captcha.classList.remove("hidden");
+        captchaTriggered = true;
+        return; // esperamos a que hCaptcha valide, luego reintenta
+      }
+
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      result.innerHTML = "Sending...";
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      })
+        .then(async (response) => {
+          let json = await response.json();
+          if (response.status == 200) {
+            result.classList.add("text-green-500");
+            result.innerHTML = json.message;
+          } else {
+            console.log(response);
+            result.classList.add("text-red-500");
+            result.innerHTML = json.message;
+          }
         })
-          .then(async (response) => {
-            let json = await response.json();
-            if (response.status == 200) {
-              result.classList.add("text-green-500");
-              result.innerHTML = json.message;
-            } else {
-              console.log(response);
-              result.classList.add("text-red-500");
-              result.innerHTML = json.message;
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-            result.innerHTML = "Something went wrong!";
-          })
-          .then(function () {
-            form.reset();
-            form.classList.remove("was-validated");
-            setTimeout(() => {
-              result.style.display = "none";
-            }, 5000);
-          });
-      });
-    },
-    { once: true }
-  );
+        .catch((error) => {
+          console.log(error);
+          result.innerHTML = "Something went wrong!";
+        })
+        .then(function () {
+          form.reset();
+          form.classList.remove("was-validated");
+          captcha.classList.add("hidden");
+          captchaTriggered = false;
+          setTimeout(() => {
+            result.style.display = "none";
+          }, 5000);
+        });
+    });
+  });
 </script>

@@ -4,24 +4,27 @@ import ArrowRight from "./ui/ArrowRight.astro";
 const { title, link, image, style } = Astro.props;
 ---
 
-<div class=`${style} flex`>
+<div class={`${style} flex`}>
   <img src={image} alt="img" class="object-cover" />
-  <div class="bg-white grow-1 flex flex-col gap-5" style="line-height: normal;">
-    <h3 class="text-[47px]">{title}</h3>
+  <div class="bg-white grow-1 flex flex-col gap-4 p-6" style="line-height: normal;">
+    <h3 class="text-[28px] leading-tight">{title}</h3>
     <Link
       external
       to={link}
-      class="group text-lg tracking-wider flex gap-2 items-center place-content-center w-fit"
+      class="group text-base tracking-wide flex gap-2 items-center place-content-center w-fit"
     >
       <span
-        class="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:border-b-2 after:border-black after:border-dotted after:transition-all after:duration-300 after:ease-in-out after:content-[''] group-hover:after:w-full"
+        class="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:border-b after:border-black after:border-dotted after:transition-all after:duration-300 after:ease-in-out after:content-[''] group-hover:after:w-full"
       >
         Read more
       </span>
-      <ArrowRight />
+      <ArrowRight class="w-5 h-5" />
     </Link>
   </div>
 </div>
+
+
+
 <style>
   .first-news {
     grid-column: span 4 / span 4;
@@ -36,6 +39,7 @@ const { title, link, image, style } = Astro.props;
       margin-left: -33px;
     }
   }
+
   .second-news {
     flex-direction: column;
     grid-row: span 3 / span 3;
@@ -52,6 +56,7 @@ const { title, link, image, style } = Astro.props;
       margin-top: -33px;
     }
   }
+
   .third-news {
     grid-column: span 3 / span 3;
     grid-row-start: 2;
@@ -69,6 +74,7 @@ const { title, link, image, style } = Astro.props;
       }
     }
   }
+
   .fourth-news {
     grid-column: span 3 / span 3;
     grid-column-start: 2;

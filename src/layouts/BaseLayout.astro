@@ -1,19 +1,22 @@
 ---
-import { BASE_URL } from '../data/consts'
-import type { HTMLAttributes } from 'astro/types'
-import '../styles/global.css'
+import { BASE_URL } from "../data/consts";
+import type { HTMLAttributes } from "astro/types";
+import "../styles/global.css";
 
 interface Props {
-  title: string
-  description: string
-  body?: HTMLAttributes<'body'>
+	title: string;
+	description: string;
+	body?: HTMLAttributes<"body">;
 }
 
-const { description, title, body } = Astro.props
-const faviconImagePath = BASE_URL + '/favicon.svg'
-const previewImagePath = BASE_URL + '/preview.png'
-const canonicalUrl = Astro.url.pathname !== '/' ? new URL(Astro.url.pathname, BASE_URL).href.replace(/\/$/, '') : BASE_URL
-const themeColor = '#F165BE'
+const { description, title, body } = Astro.props;
+const faviconImagePath = `${BASE_URL}/favicon.svg`;
+const previewImagePath = `${BASE_URL}/preview.png`;
+const canonicalUrl =
+	Astro.url.pathname !== "/"
+		? new URL(Astro.url.pathname, BASE_URL).href.replace(/\/$/, "")
+		: BASE_URL;
+const themeColor = "#F165BE";
 ---
 
 <!doctype html>

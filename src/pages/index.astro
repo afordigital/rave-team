@@ -11,24 +11,29 @@ import OurNewsletter from "../components/OurNewsletter.astro";
 import Parallax from "../components/Parallax.astro";
 import SpaceDivaSection from "../components/SpaceDivaSection.astro";
 
-const title = 'Rave Team'
-const description = 'flashy stories 💫 deranged experiences'
+const title = "Rave Team";
+const description = "flashy stories 💫 deranged experiences";
 ---
 
 <BaseLayout {title} {description}>
   <Navbar />
   <main
     class="w-full h-full relative min-h-screen bg-cover bg-[url('/images/background.webp')] bg-no-repeat bg-center"
+    id="hero"
   >
     <Parallax />
     <div
       class="font-luckiest-guy absolute w-full text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center flex flex-col items-center gap-12"
     >
-      <p
-        class="px-8 tracking-wider bg-primary/50 py-1.5 border-2 text-lg border-white rounded-full"
+      <div
+        class="bg-[#2B2340] p-[0.2] rounded-full inline-block border-4 border-transparent rainbow-border"
       >
-        Rave Team
-      </p>
+        <span
+          class="text-white text-2xl font-luckiest-guy px-8 pt-2 block bg-[#2B2340] rounded-full"
+        >
+          RAVE TEAM
+        </span>
+      </div>
       <h1 class="text-hero-title text-shadow-[7px_10px_0_rgba(0,0,0,1)]">
         FLASHY STORIES,<br /> DERANGED EXPERIENCES
       </h1>
@@ -43,9 +48,27 @@ const description = 'flashy stories 💫 deranged experiences'
     </div>
   </main>
   <OurNewsletter />
-  <SpaceDivaSection/>
+  <SpaceDivaSection />
   <LastNews />
-  <AboutUs />
+  <section class="bg-secondary">
+    <AboutUs />
+  </section>
   <Form />
   <Footer />
 </BaseLayout>
+
+<style>
+  .rainbow-border {
+    background: linear-gradient(
+      90deg,
+      #ff80b5,
+      #ffa07a,
+      #ffd580,
+      #80ffea,
+      #8fd3ff,
+      #b28dff
+    );
+    background-origin: border-box;
+    background-clip: border-box;
+  }
+</style>

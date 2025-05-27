@@ -9,9 +9,9 @@ import Instagram from "./ui/Instagram.astro";
 <footer
   class="w-full bg-secondary text-white pt-[82px] pb-7 px-12 flex flex-col gap-[108px] items-end justify-center background-diagonal"
 >
-  <div class="flex gap-2 items-center justify-center">
+  <div class="flex gap-x-4 items-center justify-center">
     <div class="group relative">
-      <Link external aria-label="Instagram logo icon" to="/">
+      <Link external aria-label="Instagram logo icon" to="/" class="social-icon">
         <Instagram />
       </Link>
       <span
@@ -20,64 +20,69 @@ import Instagram from "./ui/Instagram.astro";
         border-gray-300 bg-white text-sm font-bold
         shadow-md transition-all duration-300 ease-in-out
         group-hover:scale-100 text-black"
-        >Instagram<span> </span></span
-      >
+        >Instagram</span>
     </div>
+
     <div class="group relative">
-      <Link external aria-label="Tiktok logo icon" to="/">
+      <Link external aria-label="Tiktok logo icon" to="/" class="social-icon">
         <Tiktok />
       </Link>
       <span
         class="absolute -top-8 left-[50%] -translate-x-[50%]
-          z-20 origin-left scale-0 border
-          border-gray-300 bg-white text-sm font-bold
-          shadow-md transition-all duration-300 ease-in-out
-          group-hover:scale-100 text-black"
-        >TikTok<span> </span></span
-      >
+        z-20 origin-left scale-0 border
+        border-gray-300 bg-white text-sm font-bold
+        shadow-md transition-all duration-300 ease-in-out
+        group-hover:scale-100 text-black"
+        >TikTok</span>
     </div>
+
     <div class="group relative">
-      <Link external aria-label="Youtube logo icon" to="/">
+      <Link external aria-label="Youtube logo icon" to="/" class="social-icon">
         <Youtube />
       </Link>
       <span
         class="absolute -top-8 left-[50%] -translate-x-[50%]
-          z-20 origin-left scale-0 border
-          border-gray-300 bg-white text-sm font-bold
-          shadow-md transition-all duration-300 ease-in-out
-          group-hover:scale-100 text-black"
-        >YouTube<span> </span></span
-      >
+        z-20 origin-left scale-0 border
+        border-gray-300 bg-white text-sm font-bold
+        shadow-md transition-all duration-300 ease-in-out
+        group-hover:scale-100 text-black"
+        >YouTube</span>
     </div>
+
     <div class="group relative">
-      <Link external aria-label="Bluesky logo icon" to="/">
+      <Link external aria-label="Bluesky logo icon" to="/" class="social-icon">
         <Bluesky />
       </Link>
       <span
         class="absolute -top-8 left-[50%] -translate-x-[50%]
-          z-20 origin-left scale-0 border
-          border-gray-300 bg-white text-sm font-bold
-          shadow-md transition-all duration-300 ease-in-out
-          group-hover:scale-100 text-black"
-        >Bluesky<span> </span></span
-      >
+        z-20 origin-left scale-0 border
+        border-gray-300 bg-white text-sm font-bold
+        shadow-md transition-all duration-300 ease-in-out
+        group-hover:scale-100 text-black"
+        >Bluesky</span>
     </div>
   </div>
+
   <p
     class="flex gap-2 items-center place-content-center w-fit font-bold text-sm"
   >
-    Designed and Developed by <Link
+    Designed and Developed by
+    <Link
       external
       to="https://discord.com/invite/comuafor"
       class="group flex gap-2 items-center place-content-center w-fit"
-      ><span
+    >
+      <span
         class="relative after:absolute after:bottom-0 after:left-0 after:w-full after:border-b-2 after:border-white after:border-dotted after:transition-all after:duration-300 after:ease-in-out after:content-[''] group-hover:after:w-0"
       >
         Comuafor
-      </span></Link
-    > 💓
+      </span>
+    </Link>
+    💗
   </p>
 </footer>
+
+
 <style is:global>
   .background-diagonal {
     clip-path: polygon(100% 0%, 0% 100%, 100% 100%);

@@ -1,0 +1,59 @@
+<section
+    id="about"
+    class="max-w-6xl items-center w-full mx-auto px-4 text-white py-20 grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12"
+>
+    <hgroup>
+        <h2 class="text-section-title font-luckiest-guy">About Us</h2>
+        <p>
+            We're building something awesome — and yes, we're raising money to
+            make it even more awesome. 💥
+        </p>
+    </hgroup>
+    <article
+        class="flex relative justify-center items-center gap-4 lg:gap-6 py-8"
+    >
+        <img
+            src="/images/team/image-1.png"
+            alt="Team Member 1"
+            width="200"
+            height="185"
+            class="image-collage border-4 relative z-5 mr-24 border-white shadow-[8px_4px_0_rgba(250,250,250,1)] transform rotate-[-6deg]"
+        />
+        <img
+            src="/images/team/image-4.png"
+            alt="Team Member 4"
+            width="140"
+            height="187"
+            class="image-collage border-4 absolute -top-8 z-0 border-white shadow-[8px_4px_0_rgba(250,250,250,1)] transform rotate-[5deg]"
+        />
+        <img
+            src="/images/team/image-2.png"
+            alt="Team Member 2"
+            width="162"
+            height="167"
+            class="image-collage border-4 relative z-5 border-white shadow-[8px_4px_0_rgba(250,250,250,1)] transform rotate-[2deg]"
+        />
+        <img
+            src="/images/team/image-3.png"
+            alt="Team Member 3"
+            width="171"
+            height="141"
+            class="image-collage border-4 absolute top-32 z-10 border-white ml-24 shadow-[8px_4px_0_rgba(250,250,250,1)] transform rotate-[-3deg]"
+        />
+    </article>
+</section>
+
+<style>
+    .image-collage {
+        box-shadow: 5px 5px 0 0 #ededed;
+        cursor: pointer;
+        transition:
+            box-shadow 0.15s ease-in-out,
+            transform 0.15s ease-in-out;
+    }
+
+    .image-collage:hover {
+        transform: none;
+        box-shadow: none;
+    }
+</style>

@@ -5,12 +5,16 @@ import ArrowRight from "./ui/ArrowRight.astro";
 import NewsCardGrid from "./NewsCardGrid.astro";
 ---
 
-<section id="news"
-  class="flex flex-col justify-center items-center gap-14 pt-[72px] pb-14 text-white font-luckiest-guy"
+<section
+  id="news"
+  class="flex flex-col max-w-6xl w-full mx-auto px-4 justify-center items-center gap-10 py-24 pb-10 text-white font-luckiest-guy"
 >
-  <h2 class="text-6xl font-luckiest-guy self-center">LATEST NEWS</h2>
+  <h2 class="text-4xl lg:text-5xl font-luckiest-guy self-center">
+    LATEST NEWS
+  </h2>
+
   <article
-    class="grid w-full grid-cols-[368px_1fr_1fr_1fr] grid-rows-[223px_223px_315px_124px] gap-5 max-w-7xl text-black"
+    class="grid w-full grid-cols-[1fr_1fr_1fr_1fr] grid-rows-[180px_180px_260px_100px] gap-4 max-w-7xl text-black"
   >
     {
       news
@@ -24,17 +28,27 @@ import NewsCardGrid from "./NewsCardGrid.astro";
           />
         ))
     }
+
     <div
       class="col-span-3 col-start-2 row-start-4 bg-black button-diagonal text-white flex justify-center items-center"
     >
-      <Link to="/last-news" class="text-[42px] flex gap-2 items-center">
-        REad More updates and news <ArrowRight
-          class="fill-white w-[42px] h-[42px]"
-        /></Link
+      <Link
+        to="/last-news"
+        class="text-2xl lg:text-3xl flex gap-2 items-center group transition-all duration-300 ease-in-out relative"
       >
+        <span
+          class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 after:ease-in-out group-hover:after:w-full"
+        >
+          Read more updates and news
+        </span>
+        <ArrowRight
+          class="fill-white w-8 h-8 transform transition-transform duration-300 ease-in-out group-hover:translate-x-1"
+        />
+      </Link>
     </div>
   </article>
 </section>
+
 <style>
   .button-diagonal {
     clip-path: polygon(0 0, 100% 0, calc(100% - 50px) 100%, 0 100%);
