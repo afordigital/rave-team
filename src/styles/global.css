@@ -94,6 +94,11 @@
 }
 
 @theme {
+  --breakpoint-sm: 36rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+
   --font-luckiest-guy: "Luckiest Guy", sans-serif;
 
   --color-primary: #272035;
@@ -106,6 +111,20 @@
   --text-hero-action--line-height: 1;
   --text-section-title: clamp(2.5rem, 3vw, 4rem);
   --text-section-title--line-height: 1;
+}
+
+@layer components {
+  .image-collage {
+    @apply border-white border-4 cursor-pointer;
+    box-shadow: 10px 10px 0 0 #ededed;
+    transition:
+      box-shadow 0.15s ease-in-out,
+      transform 0.15s ease-in-out;
+
+    &:hover {
+      box-shadow: 4px 4px 0 0 #ededed;
+    }
+  }
 }
 
 body {
