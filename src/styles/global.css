@@ -7,6 +7,20 @@
   font-style: normal;
 }
 
+@utility rainbow-border {
+  background: linear-gradient(
+    90deg,
+    #ff80b5,
+    #ffa07a,
+    #ffd580,
+    #80ffea,
+    #8fd3ff,
+    #b28dff
+  );
+  background-origin: border-box;
+  background-clip: border-box;
+}
+
 @utility first-news {
   grid-column: span 4 / span 4;
   & img {
