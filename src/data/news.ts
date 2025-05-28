@@ -8,7 +8,7 @@ export const news: Array<newsType> = [
     link: "/",
     category: "Crodfounding",
     image: "/images/news-img-1.webp",
-    style: "first-news",
+    class: "lg:first-news",
   },
   {
     title: "A game development studio creating projects",
@@ -17,7 +17,7 @@ export const news: Array<newsType> = [
     link: "/",
     category: "Games",
     image: "/images/news-img-2.webp",
-    style: "second-news",
+    class: "lg:second-news",
   },
   {
     title: "creating projects",
@@ -26,7 +26,7 @@ export const news: Array<newsType> = [
     link: "/",
     category: "Events",
     image: "/images/news-img-3.webp",
-    style: "third-news",
+    class: "lg:third-news",
   },
   {
     title: "we would play ourselves first",
@@ -34,7 +34,7 @@ export const news: Array<newsType> = [
     link: "/",
     category: "Crodfounding",
     image: "/images/news-img-1.webp",
-    style: "fourth-news",
+    class: "lg:fourth-news",
   },
   {
     title: "NEW 5",

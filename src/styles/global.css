@@ -1,5 +1,84 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Luckiest Guy";
+  src: url("/fonts/LuckiestGuy-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@utility first-news {
+  grid-column: span 4 / span 4;
+  & img {
+    width: 357px;
+    height: 100%;
+    clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
+  }
+  & div {
+    padding: 28px 90px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
+    margin-left: -33px;
+  }
+}
+
+@utility second-news {
+  flex-direction: column;
+  grid-row: span 3 / span 3;
+  grid-row-start: 2;
+  & img {
+    width: 100%;
+    min-height: 275px;
+    clip-path: polygon(0 1%, 100% 0, 100% 100%, 0 calc(100% - 50px));
+  }
+  & div {
+    padding: 0 28px 0 28px;
+    justify-content: center;
+    clip-path: polygon(0 1%, 100% 50px, 100% 100%, 0 100%);
+    margin-top: -33px;
+  }
+}
+
+@utility third-news {
+  grid-column: span 3 / span 3;
+  grid-row-start: 2;
+  & img {
+    width: 250px;
+    height: 100%;
+    clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
+  }
+  & div {
+    padding: 28px 90px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
+    margin-left: -33px;
+    & h3 {
+      max-width: 229px;
+    }
+  }
+}
+
+@utility fourth-news {
+  grid-column: span 3 / span 3;
+  grid-column-start: 2;
+  grid-row-start: 3;
+  & img {
+    width: 302px;
+    height: 100%;
+    clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
+  }
+  & div {
+    padding: 28px 90px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
+    margin-left: -33px;
+    & h3 {
+      max-width: 360px;
+    }
+  }
+}
+
+@utility theme-shadow-text {
+  @apply text-shadow-[6px_6px_0_rgba(0,0,0,1)] transition duration-150 ease-in-out hover:translate-1.5 hover:text-shadow-[3px_3px_0_rgba(0,0,0,1)];
+}
+
 @theme {
   --font-luckiest-guy: "Luckiest Guy", sans-serif;
 
@@ -15,18 +94,6 @@
   --text-section-title--line-height: 1;
 }
 
-@layer components {
-  .theme-shadow-text {
-    @apply text-shadow-[6px_6px_0_rgba(0,0,0,1)] transition duration-150 ease-in-out hover:translate-1.5 hover:text-shadow-[3px_3px_0_rgba(0,0,0,1)];
-  }
-}
-
-@font-face {
-  font-family: "Luckiest Guy";
-  src: url("/fonts/LuckiestGuy-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
 body {
   background-color: var(--color-primary);
 }
