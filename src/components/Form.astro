@@ -1,21 +1,23 @@
 <section
   id="contact"
-  class="text-white py-12 flex flex-col lg:flex-row-reverse max-w-6xl w-full mx-auto px-4"
+  class="text-white py-12 flex flex-col lg:flex-row-reverse gap-24 items-stretch max-w-6xl w-full mx-auto px-4"
 >
-  <article class="flex flex-col gap-y-1">
+  <!-- Texto lateral -->
+  <article class="flex flex-col gap-y-1 basis-full lg:basis-1/2">
     <hgroup class="flex flex-col text-left gap-y-1">
       <h2 class="text-section-title font-luckiest-guy">Want to invest?</h2>
       <p class="text-xl">We're not going to say no, message us 😊</p>
     </hgroup>
-    <!-- <img src="/images/Supernova.png" alt="Supernova" /> -->
   </article>
+
+  <!-- Formulario -->
   <form
     id="form"
     method="POST"
     novalidate
     data-astro-reload
     action="https://api.web3forms.com/submit"
-    class="needs-validation flex flex-col gap-4 max-w-[450px] mx-auto w-full"
+    class="needs-validation flex flex-col gap-4 w-full basis-full lg:basis-1/2"
   >
     <input
       type="hidden"
@@ -23,25 +25,21 @@
       value={import.meta.env.WEB3FORMS_API_KEY}
     />
 
-    <input
-      type="checkbox"
-      class="hidden"
-      style="display:none"
-      name="botcheck"
-    />
+    <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
 
     <label
-      class="py-3 px-4 shadow-[4px_2px_0_rgba(250,250,250,1)] border-1 border-color-cs-gray"
+      class="py-3 px-4 shadow-[4px_2px_0_rgba(250,250,250,1)] border border-white"
     >
       <input
         name="name"
         type="text"
         placeholder="Introduce your name"
-        class="outline-none placeholder:text-[#E1E1E1]"
+        class="outline-none placeholder:text-[#E1E1E1] bg-transparent w-full"
       />
     </label>
+
     <label
-      class="py-3 px-4 shadow-[4px_2px_0_rgba(250,250,250,1)] border-1 border-color-cs-gray"
+      class="py-3 px-4 shadow-[4px_2px_0_rgba(250,250,250,1)] border border-white"
     >
       <input
         required
@@ -49,46 +47,49 @@
         type="email"
         name="email"
         placeholder="Introduce your email*"
-        class="outline-none placeholder:text-[#E1E1E1]"
+        class="outline-none placeholder:text-[#E1E1E1] bg-transparent w-full"
       />
     </label>
+
     <label
-      class="py-3 px-4 shadow-[4px_2px_0_rgba(250,250,250,1)] border-1 border-color-cs-gray"
+      class="py-3 px-4 shadow-[4px_2px_0_rgba(250,250,250,1)] border border-white"
     >
       <textarea
         name="message"
         placeholder="Drop your message here, like it's hot 🔥"
-        class="outline-none w-full min-h-[50px] max-h-[150px] placeholder:text-[#E1E1E1]"
+        class="outline-none w-full min-h-[50px] max-h-[150px] placeholder:text-[#E1E1E1] bg-transparent"
       ></textarea>
     </label>
-    <div class="w-full mx-auto">
+
+    <div class="w-full">
       <div
         id="captcha-container"
         class="h-captcha justify-center hidden"
         data-captcha="true"
         data-lang="en"
         data-theme="dark"
-      >
-      </div>
+      ></div>
     </div>
+
     <button
       type="submit"
-      class="bg-white px-[50px] w-full py-4 text-primary font-luckiest-guy self-center text-xl transition duration-150 ease-in-out input-button cursor-pointer"
+      class="bg-white px-[50px] w-full py-4 text-primary font-luckiest-guy text-xl transition duration-150 ease-in-out input-button cursor-pointer"
     >
       Send Message
     </button>
+
     <div id="result" class="mt-3 text-center"></div>
   </form>
+
   <script src="https://web3forms.com/client/script.js" async defer></script>
 </section>
 
 <style>
   .input-button {
     box-shadow: 5px 5px 0 0 #ededed;
-    transition:
-      box-shadow 0.15s ease-in-out,
-      transform 0.15s ease-in-out;
+    transition: box-shadow 0.15s ease-in-out, transform 0.15s ease-in-out;
   }
+
   .input-button:hover {
     transform: none;
     box-shadow: none;
@@ -96,8 +97,6 @@
 </style>
 
 <script is:inline>
-  // use astro:page-load event if you are using View Transitions
-
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("form");
     const result = document.getElementById("result");
@@ -117,7 +116,7 @@
       if (!captchaTriggered) {
         captcha.classList.remove("hidden");
         captchaTriggered = true;
-        return; // esperamos a que hCaptcha valide, luego reintenta
+        return;
       }
 
       const formData = new FormData(form);
