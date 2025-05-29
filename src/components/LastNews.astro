@@ -14,27 +14,21 @@ import NewsCardGrid from "./NewsCardGrid.astro";
   </h2>
 
   <article
-    class="grid w-full grid-cols-[1fr_1fr_1fr_1fr] grid-rows-[180px_180px_260px_100px] gap-4 text-black"
+    class="flex flex-col w-full lg:grid-cols-[1fr_1fr_1fr_1fr] lg:grid-rows-[180px_180px_260px_100px] gap-4 text-black lg:grid"
   >
     {
-      news
-        .slice(0, 4)
-        .map((card) => (
-          <NewsCardGrid
-            title={card.title}
-            link={card.link}
-            image={card.image}
-            style={card.style}
-          />
-        ))
+      news.map(({ image, link, title, class: extraClass }, index) => {
+        const newsCardClass = (extraClass ?? '') + (index >= 4 ? ' lg:hidden' : '')
+        return <NewsCardGrid {title} {link} {image} class={newsCardClass.trim()} />
+      })
     }
 
     <div
-      class="col-span-3 col-start-2 row-start-4 bg-black button-diagonal text-white flex justify-center items-center"
+      class="col-span-3 col-start-2 row-start-4 bg-black button-diagonal text-white flex lg:justify-center items-center"
     >
       <Link
         to="/last-news"
-        class="text-2xl lg:text-3xl flex gap-2 items-center group transition-all duration-300 ease-in-out relative"
+        class="text-2xl lg:text-3xl py-6 pl-6 flex gap-2 items-center group transition-all duration-300 ease-in-out relative"
       >
         <span
           class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 after:ease-in-out group-hover:after:w-full"

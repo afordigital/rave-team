@@ -1,6 +1,104 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Luckiest Guy";
+  src: url("/fonts/LuckiestGuy-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@utility rainbow-border {
+  background: linear-gradient(
+    90deg,
+    #ff80b5,
+    #ffa07a,
+    #ffd580,
+    #80ffea,
+    #8fd3ff,
+    #b28dff
+  );
+  background-origin: border-box;
+  background-clip: border-box;
+}
+
+@utility first-news {
+  grid-column: span 4 / span 4;
+  & img {
+    width: 357px;
+    height: 100%;
+    clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
+  }
+  & div {
+    padding: 28px 90px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
+    margin-left: -33px;
+  }
+}
+
+@utility second-news {
+  flex-direction: column;
+  grid-row: span 3 / span 3;
+  grid-row-start: 2;
+  & img {
+    width: 100%;
+    min-height: 275px;
+    clip-path: polygon(0 1%, 100% 0, 100% 100%, 0 calc(100% - 50px));
+  }
+  & div {
+    padding: 0 28px 0 28px;
+    justify-content: center;
+    clip-path: polygon(0 1%, 100% 50px, 100% 100%, 0 100%);
+    margin-top: -33px;
+  }
+}
+
+@utility third-news {
+  grid-column: span 3 / span 3;
+  grid-row-start: 2;
+  & img {
+    width: 250px;
+    height: 100%;
+    clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
+  }
+  & div {
+    padding: 28px 90px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
+    margin-left: -33px;
+    & h3 {
+      max-width: 229px;
+    }
+  }
+}
+
+@utility fourth-news {
+  grid-column: span 3 / span 3;
+  grid-column-start: 2;
+  grid-row-start: 3;
+  & img {
+    width: 302px;
+    height: 100%;
+    clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
+  }
+  & div {
+    padding: 28px 90px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
+    margin-left: -33px;
+    & h3 {
+      max-width: 360px;
+    }
+  }
+}
+
+@utility theme-shadow-text {
+  @apply text-shadow-[6px_6px_0_rgba(0,0,0,1)] transition duration-150 ease-in-out hover:translate-1.5 hover:text-shadow-[3px_3px_0_rgba(0,0,0,1)];
+}
+
 @theme {
+  --breakpoint-sm: 36rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+
   --font-luckiest-guy: "Luckiest Guy", sans-serif;
 
   --color-primary: #272035;
@@ -16,17 +114,19 @@
 }
 
 @layer components {
-  .theme-shadow-text {
-    @apply text-shadow-[6px_6px_0_rgba(0,0,0,1)] transition duration-150 ease-in-out hover:translate-1.5 hover:text-shadow-[3px_3px_0_rgba(0,0,0,1)];
+  .image-collage {
+    @apply border-white border-4 cursor-pointer;
+    box-shadow: 10px 10px 0 0 #ededed;
+    transition:
+      box-shadow 0.15s ease-in-out,
+      transform 0.15s ease-in-out;
+
+    &:hover {
+      box-shadow: 4px 4px 0 0 #ededed;
+    }
   }
 }
 
-@font-face {
-  font-family: "Luckiest Guy";
-  src: url("/fonts/LuckiestGuy-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
 body {
   background-color: var(--color-primary);
 }

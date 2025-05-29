@@ -1,10 +1,18 @@
 ---
 import Link from "./Link.astro";
 import ArrowRight from "./ui/ArrowRight.astro";
-const { title, link, image, style } = Astro.props;
+
+interface Props {
+  link: string
+  title: string
+  image: string
+  class?: string
+}
+
+const { title, link, image, class: extraClass } = Astro.props;
 ---
 
-<div class={`${style} flex`}>
+<article class:list={['flex max-lg:flex-col', extraClass]}>
   <img src={image} alt="img" class="object-cover" />
   <div class="bg-white grow-1 flex flex-col gap-4 p-6" style="line-height: normal;">
     <h3 class="text-[28px] leading-tight">{title}</h3>
@@ -21,76 +29,4 @@ const { title, link, image, style } = Astro.props;
       <ArrowRight class="w-5 h-5" />
     </Link>
   </div>
-</div>
-
-
-
-<style>
-  .first-news {
-    grid-column: span 4 / span 4;
-    & img {
-      width: 357px;
-      height: 100%;
-      clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
-    }
-    & div {
-      padding: 28px 90px;
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
-      margin-left: -33px;
-    }
-  }
-
-  .second-news {
-    flex-direction: column;
-    grid-row: span 3 / span 3;
-    grid-row-start: 2;
-    & img {
-      width: 100%;
-      min-height: 275px;
-      clip-path: polygon(0 1%, 100% 0, 100% 100%, 0 calc(100% - 50px));
-    }
-    & div {
-      padding: 0 28px 0 28px;
-      justify-content: center;
-      clip-path: polygon(0 1%, 100% 50px, 100% 100%, 0 100%);
-      margin-top: -33px;
-    }
-  }
-
-  .third-news {
-    grid-column: span 3 / span 3;
-    grid-row-start: 2;
-    & img {
-      width: 250px;
-      height: 100%;
-      clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
-    }
-    & div {
-      padding: 28px 90px;
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
-      margin-left: -33px;
-      & h3 {
-        max-width: 229px;
-      }
-    }
-  }
-
-  .fourth-news {
-    grid-column: span 3 / span 3;
-    grid-column-start: 2;
-    grid-row-start: 3;
-    & img {
-      width: 302px;
-      height: 100%;
-      clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 100%, 0 100%);
-    }
-    & div {
-      padding: 28px 90px;
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%);
-      margin-left: -33px;
-      & h3 {
-        max-width: 360px;
-      }
-    }
-  }
-</style>
+</article>

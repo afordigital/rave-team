@@ -4,5 +4,5 @@ export interface newsType {
   link: string;
   category: string;
   image: string;
-  style?: "first-news" | "second-news" | "third-news" | "fourth-news";
+  class?: string;
 }
