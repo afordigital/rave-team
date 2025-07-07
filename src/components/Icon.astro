@@ -1,16 +1,15 @@
 ---
-import { Icon as AstroIcon } from 'astro-icon/components'
-import type { HTMLAttributes } from 'astro/types'
-import type { IconName } from 'virtual:icon'
+import { Icon as AstroIcon } from "astro-icon/components";
+import type { HTMLAttributes } from "astro/types";
 
-interface Props extends HTMLAttributes<'svg'> {
-  name: string
-  size?: number
-  width?: number
-  height?: number
+interface Props extends HTMLAttributes<"svg"> {
+	name: string;
+	size?: number;
+	width?: number;
+	height?: number;
 }
 
-const { name, size, width, height, ...restProps } = Astro.props
+const { name, size, width, height, ...restProps } = Astro.props;
 ---
 
 <AstroIcon {name} width={size ?? width} height={size ?? height} {...restProps} />
