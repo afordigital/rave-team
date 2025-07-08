@@ -9,21 +9,37 @@ import Download from "./ui/Download.astro";
     <h2 class="text-section-title font-luckiest-guy lg:text-left pb-6">
       JOIN OUR NEWSLETTER
     </h2>
-    <form class="flex gap-4 flex-col lg:flex-row w-full">
-      <input
-        type="email"
-        id="suscribe"
-        name="suscribe"
-        placeholder="Introduce your email"
-        class="border border-white px-[15px] w-full py-3 lg:w-[600px] placeholder:text-[#E1E1E1] font-semibold text-xl bg-[#3B2F45] input-search"
-      />
-      <button
-        type="submit"
-        class="bg-white px-[50px] py-4 text-primary font-luckiest-guy text-xl transition duration-150 ease-in-out input-button cursor-pointer"
-      >
-        SUBSCRIBE
-      </button>
+    <form class="flex flex-col w-full">
+      <div class="flex gap-4 flex-col lg:flex-row w-full">
+        <input
+          type="email"
+          id="suscribe"
+          name="suscribe"
+          placeholder="Introduce your email"
+          class="border border-white px-[15px] w-full py-3 lg:w-[600px] placeholder:text-[#E1E1E1] font-semibold text-xl bg-[#3B2F45] input-search"
+        />
+        <button
+          type="submit"
+          class="bg-white px-[50px] py-4 text-primary font-luckiest-guy text-xl transition duration-150 ease-in-out input-button cursor-pointer"
+        >
+          SUBSCRIBE
+        </button>
+      </div>
+    
+      <label class="inline-flex items-center space-x-3 cursor-pointer select-none mt-4 text-white font-manrope text-base font-normal relative">
+        <input
+          type="checkbox"
+          class="w-5 h-5 rounded-md border border-gray-400 bg-white cursor-pointer relative focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <span>I agree to receive emails and accept the privacy policy.</span>
+      </label>
+      
+      
+      
+      
+      
     </form>
+    
   </article>
   <article
     class="flex h-[200px] bg-secondary background-diagonal px-[54px] pb-10 items-end justify-center"
