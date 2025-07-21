@@ -9,12 +9,13 @@ import Download from "./ui/Download.astro";
     <h2 class="text-section-title font-luckiest-guy lg:text-left pb-6">
       JOIN OUR NEWSLETTER
     </h2>
-    <form class="flex flex-col w-full">
+    <form class="flex flex-col w-full" id="newsletter-form">
       <div class="flex gap-4 flex-col lg:flex-row w-full">
         <input
           type="email"
           id="suscribe"
           name="suscribe"
+          required
           placeholder="Introduce your email"
           class="border border-white px-[15px] w-full py-3 lg:w-[600px] placeholder:text-[#E1E1E1] font-semibold text-xl bg-[#3B2F45] input-search"
         />
@@ -28,16 +29,14 @@ import Download from "./ui/Download.astro";
     
       <label class="inline-flex items-center space-x-3 cursor-pointer select-none mt-4 text-white font-manrope text-base font-normal relative">
         <input
+          id="accept"
+          name="accept"
+          required
           type="checkbox"
           class="w-5 h-5 rounded-md border border-gray-400 bg-white cursor-pointer relative focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <span>I agree to receive emails and accept the privacy policy.</span>
+        <span>I agree to receive emails and accept the privacy policy</span>
       </label>
-      
-      
-      
-      
-      
     </form>
     
   </article>
@@ -72,6 +71,14 @@ import Download from "./ui/Download.astro";
     class="absolute top-[185px] right-[75px]"
   />
 </section>
+<div
+  id="toast"
+  class="fixed bottom-6 right-6 z-50 bg-green-500 text-white py-3 px-5 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-300"
+>
+  🎉 You’ve successfully subscribed!
+</div>
+
+
 
 <style>
   .input-search {
@@ -97,3 +104,32 @@ import Download from "./ui/Download.astro";
     box-shadow: none;
   }
 </style>
+
+
+<script type="module">
+  const form = document.getElementById("newsletter-form");
+  const toast = document.getElementById("toast");
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const checkbox = document.getElementById("accept");
+    if (!checkbox.checked) {
+      alert("You must accept the privacy policy to subscribe.");
+      return;
+    }
+
+    showToast();
+    form.reset();
+  });
+
+  function showToast() {
+    toast.classList.remove("opacity-0", "pointer-events-none");
+    toast.classList.add("opacity-100");
+
+    setTimeout(() => {
+      toast.classList.add("opacity-0", "pointer-events-none");
+      toast.classList.remove("opacity-100");
+    }, 3000);
+  }
+</script>
