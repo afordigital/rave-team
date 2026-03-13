@@ -71,6 +71,37 @@
       ></div>
     </div>
 
+    <div class="flex items-start gap-2 text-xs text-gray-200">
+      <input
+        id="legal-consent"
+        name="legal_consent"
+        type="checkbox"
+        required
+        class="mt-1 h-4 w-4 rounded border-gray-400 bg-transparent text-primary focus:ring-2 focus:ring-offset-0 focus:ring-white"
+      />
+      <label for="legal-consent" class="flex-1">
+        He leído y acepto la información legal.
+      </label>
+      <div class="relative group ml-1">
+        <button
+          id="legal-info-button"
+          type="button"
+          aria-label="Más información legal"
+          aria-describedby="legal-tooltip"
+          class="flex h-5 w-5 items-center justify-center rounded-full border border-gray-300 text-[10px] font-bold text-gray-200 bg-transparent hover:bg-white hover:text-primary transition-colors"
+        >
+          i
+        </button>
+        <div
+          id="legal-tooltip"
+          role="tooltip"
+          class="absolute left-1/2 top-7 z-20 hidden w-64 -translate-x-1/2 rounded-md border border-gray-300 bg-white p-3 text-[11px] text-black shadow-lg group-hover:block"
+        >
+          Aquí irá la información legal que me pases.
+        </div>
+      </div>
+    </div>
+
     <button
       type="submit"
       class="bg-white px-[50px] w-full py-4 text-primary font-luckiest-guy text-xl transition duration-150 ease-in-out input-button cursor-pointer"
@@ -101,6 +132,27 @@
     const form = document.getElementById("form");
     const result = document.getElementById("result");
     const captcha = document.getElementById("captcha-container");
+    const legalInfoButton = document.getElementById("legal-info-button");
+    const legalTooltip = document.getElementById("legal-tooltip");
+
+    if (legalInfoButton && legalTooltip) {
+      legalInfoButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        legalTooltip.classList.toggle("hidden");
+      });
+
+      document.addEventListener("click", (event) => {
+        if (
+          !legalTooltip.classList.contains("hidden") &&
+          event.target instanceof Node &&
+          !legalTooltip.contains(event.target) &&
+          event.target !== legalInfoButton
+        ) {
+          legalTooltip.classList.add("hidden");
+        }
+      });
+    }
 
     let captchaTriggered = false;
 

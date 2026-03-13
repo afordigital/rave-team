@@ -10,12 +10,21 @@ interface Props {
 }
 
 const { description, title, body } = Astro.props;
-const faviconImagePath = `${BASE_URL}/favicon.svg`;
-const previewImagePath = `${BASE_URL}/preview.png`;
-const canonicalUrl =
-	Astro.url.pathname !== "/"
-		? new URL(Astro.url.pathname, BASE_URL).href.replace(/\/$/, "")
-		: BASE_URL;
+
+const siteUrl = BASE_URL || Astro.url.origin;
+const faviconImagePath = `${siteUrl}/favicon.svg`;
+const previewImagePath = `${siteUrl}/preview.png`;
+
+let canonicalUrl: string;
+if (Astro.url.pathname !== "/") {
+	try {
+		canonicalUrl = new URL(Astro.url.pathname, siteUrl).href.replace(/\/$/, "");
+	} catch {
+		canonicalUrl = Astro.url.href.replace(/\/$/, "");
+	}
+} else {
+	canonicalUrl = siteUrl;
+}
 const themeColor = "#F165BE";
 ---
 

@@ -1,0 +1,120 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Privacy Policy - Rave Team";
+const description = "Política de privacidad de Rave Team y tratamiento de datos personales.";
+---
+
+<BaseLayout {title} {description}>
+  <main class="min-h-screen w-full bg-secondary text-white">
+    <section class="max-w-4xl mx-auto px-4 py-16 flex flex-col gap-6">
+      <h1 class="text-3xl md:text-4xl font-luckiest-guy mb-4">
+        POLÍTICA DE PRIVACIDAD
+      </h1>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold">1. ¿Quién es el responsable del tratamiento de tus datos?</h2>
+        <p><strong>Identidad:</strong> Miguel Fernández-Montañés Domínguez</p>
+        <p><strong>NIF/DNI:</strong> 79075424K</p>
+        <p><strong>Dirección:</strong> Calle Justo Vilar 2, Piso 4, Puerta 18. 46940. Manises, Valencia.</p>
+        <p>
+          <strong>Email de contacto:</strong>
+          <a href="mailto:raveteamgames@gmail.com" class="underline">
+            raveteamgames@gmail.com
+          </a>
+        </p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold">2. ¿Con qué finalidad tratamos tus datos personales?</h2>
+        <p>
+          En Rave Team, tratamos la información que nos facilitas con las siguientes finalidades:
+        </p>
+        <ul class="list-disc list-inside space-y-1">
+          <li>
+            <strong>Gestión de la suscripción a la newsletter:</strong>
+            Para enviarte comunicaciones comerciales, noticias sobre nuestros juegos y promociones exclusivas.
+          </li>
+          <li>
+            <strong>Contacto:</strong>
+            Para responder a las consultas que nos envíes a través del formulario de contacto o email.
+          </li>
+        </ul>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold">3. ¿Por cuánto tiempo conservaremos tus datos?</h2>
+        <p>
+          Tus datos se conservarán mientras exista un interés mutuo para mantener el fin del tratamiento
+          o hasta que solicites su supresión. Cuando ya no sean necesarios, se suprimirán con medidas de
+          seguridad adecuadas para garantizar la seudonimización o destrucción total de los mismos.
+        </p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold">4. ¿Cuál es la legitimación para el tratamiento de tus datos?</h2>
+        <p>
+          La base legal para el tratamiento de tus datos es tu consentimiento explícito. Al marcar la casilla
+          de aceptación en nuestro formulario de newsletter o contacto, nos autorizas legítimamente a tratar
+          tus datos para las finalidades descritas.
+        </p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold">5. ¿A qué destinatarios se comunicarán tus datos?</h2>
+        <p>
+          No vendemos ni cedemos tus datos a terceros. Sin embargo, para poder enviarte la newsletter,
+          utilizamos plataformas de terceros que actúan como encargados del tratamiento:
+        </p>
+        <p>
+          <strong>Hosting:</strong> [Nombre de tu servidor, ej: Raiola / Webempresa / AWS].
+        </p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold">
+          6. ¿Cuáles son tus derechos cuando nos facilitas tus datos?
+        </h2>
+        <p>
+          Cualquier persona tiene derecho a obtener confirmación sobre si estamos tratando sus datos personales.
+          Puedes ejercer tus derechos de:
+        </p>
+        <ul class="list-disc list-inside space-y-1">
+          <li><strong>Acceso:</strong> Saber qué datos tenemos de ti.</li>
+          <li><strong>Rectificación:</strong> Modificar datos incorrectos.</li>
+          <li><strong>Supresión (Olvido):</strong> Solicitar que borremos tus datos.</li>
+          <li><strong>Oposición:</strong> Dejar de recibir comunicaciones comerciales.</li>
+          <li>
+            <strong>Limitación y Portabilidad:</strong>
+            Otros derechos técnicos según el RGPD.
+          </li>
+        </ul>
+        <p>
+          Para ejercer estos derechos, solo tienes que enviarnos un email a
+          <a href="mailto:raveteamgames@gmail.com" class="underline">
+            raveteamgames@gmail.com
+          </a>
+          adjuntando una copia de tu DNI o documento equivalente para verificar tu identidad.
+        </p>
+        <p>
+          También tienes derecho a presentar una reclamación ante la Agencia Española de Protección de Datos
+          (
+          <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" class="underline">
+            aepd.es
+          </a>
+          ) si consideras que el tratamiento no se ajusta a la normativa.
+        </p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold">7. Veracidad de los datos</h2>
+        <p>
+          Como usuario, eres responsable de la veracidad de los datos que nos envíes.
+          Rave Team se reserva el derecho a excluir de los servicios a cualquier usuario
+          que haya facilitado datos falsos.
+        </p>
+      </section>
+    </section>
+  </main>
+</BaseLayout>
+

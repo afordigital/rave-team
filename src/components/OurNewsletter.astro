@@ -2,6 +2,7 @@
 import Download from "./ui/Download.astro";
 ---
 
+{/*
 <section
   class="text-white flex flex-col justify-end h-[480px] not-even:relative"
 >
@@ -36,6 +37,30 @@ import Download from "./ui/Download.astro";
           class="w-5 h-5 rounded-md border border-gray-400 bg-white cursor-pointer relative focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <span>I agree to receive emails and accept the privacy policy</span>
+
+        <div class="relative group ml-2">
+          <button
+            id="newsletter-legal-info-button"
+            type="button"
+            aria-label="More legal information"
+            aria-describedby="newsletter-legal-tooltip"
+            class="flex h-5 w-5 items-center justify-center rounded-full border border-gray-300 text-[10px] font-bold text-white bg-transparent hover:bg-white hover:text-primary transition-colors"
+          >
+            i
+          </button>
+          <div
+            id="newsletter-legal-tooltip"
+            role="tooltip"
+            class="absolute left-1/2 top-7 z-20 hidden w-64 -translate-x-1/2 rounded-md border border-gray-300 bg-white p-3 text-[11px] text-black shadow-lg group-hover:block"
+          >
+            <p><strong>Responsable:</strong> Miguel Fernández-Montañés Domínguez</p>
+            <p class="mt-1"><strong>Finalidad:</strong> Gestionar el envío de nuestra newsletter con novedades, contenidos y promociones de nuestra web.</p>
+            <p class="mt-1"><strong>Legitimación:</strong> Tu consentimiento expreso al marcar la casilla de aceptación.</p>
+            <p class="mt-1"><strong>Destinatarios:</strong> No se cederán datos a terceros, salvo obligación legal.</p>
+            <p class="mt-1"><strong>Derechos:</strong> Puedes acceder, rectificar, limitar o suprimir tus datos en cualquier momento enviando un email a <a href="mailto:raveteamgames@gmail.com" class="underline">raveteamgames@gmail.com</a>.</p>
+            <p class="mt-1"><strong>Información adicional:</strong> Puedes consultar la información detallada en nuestra <a href="/privacy-policy" class="underline">Política de Privacidad</a>.</p>
+          </div>
+        </div>
       </label>
     </form>
     
@@ -70,7 +95,7 @@ import Download from "./ui/Download.astro";
     alt="star small"
     class="absolute top-[185px] right-[75px]"
   />
-</section>
+}}</section>
 <div
   id="toast"
   class="fixed bottom-6 right-6 z-50 bg-green-500 text-white py-3 px-5 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-300"
@@ -106,9 +131,36 @@ import Download from "./ui/Download.astro";
 </style>
 
 
-<script type="module">
+*/} */}
+
+{/* <script type="module">
   const form = document.getElementById("newsletter-form");
   const toast = document.getElementById("toast");
+  const newsletterLegalInfoButton = document.getElementById(
+    "newsletter-legal-info-button"
+  );
+  const newsletterLegalTooltip = document.getElementById(
+    "newsletter-legal-tooltip"
+  );
+
+  if (newsletterLegalInfoButton && newsletterLegalTooltip) {
+    newsletterLegalInfoButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      newsletterLegalTooltip.classList.toggle("hidden");
+    });
+
+    document.addEventListener("click", (event) => {
+      if (
+        !newsletterLegalTooltip.classList.contains("hidden") &&
+        event.target instanceof Node &&
+        !newsletterLegalTooltip.contains(event.target) &&
+        event.target !== newsletterLegalInfoButton
+      ) {
+        newsletterLegalTooltip.classList.add("hidden");
+      }
+    });
+  }
 
   form?.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -132,4 +184,4 @@ import Download from "./ui/Download.astro";
       toast.classList.remove("opacity-100");
     }, 3000);
   }
-</script>
+</script> */}

@@ -17,7 +17,8 @@ const menuItems = [
   <section class="flex justify-between max-w-6xl w-full mx-auto px-4">
     <a href="/" class="group">
       <div
-        class="w-[72px] h-[70px] rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-105 group-hover:shadow-lg"
+        id="nav-logo"
+        class="w-[72px] h-[70px] rounded-full flex items-center justify-center transition-all duration-200 opacity-0 pointer-events-none group-hover:scale-105 group-hover:shadow-lg"
         style="
         background: linear-gradient(180deg, #B485FF4D 30%, #B485FF 100%);
         box-shadow: inset 3.23px 3.23px 2.58px rgba(255, 255, 255, 0.08);
@@ -55,6 +56,7 @@ const menuItems = [
   document.addEventListener("DOMContentLoaded", () => {
     const nav = document.getElementById("main-nav");
     const hero = document.querySelector("#hero");
+    const navLogo = document.getElementById("nav-logo");
     const links = document.querySelectorAll(".nav-link");
     const activeClass = "after:w-full";
 
@@ -64,8 +66,16 @@ const menuItems = [
           const isHeroVisible = entry.isIntersecting;
           nav.classList.toggle("bg-primary", !isHeroVisible);
           nav.classList.toggle("bg-transparent", isHeroVisible);
+
+          if (navLogo) {
+            navLogo.classList.toggle("opacity-0", isHeroVisible);
+            navLogo.classList.toggle("pointer-events-none", isHeroVisible);
+            navLogo.classList.toggle("opacity-100", !isHeroVisible);
+          }
         },
-        { threshold: 0.4 }
+        // Cambiamos el umbral para que el header aparezca
+        // cuando el hero tenga menos de ~80% visible
+        { threshold: 0.8 }
       );
 
       navObserver.observe(hero);

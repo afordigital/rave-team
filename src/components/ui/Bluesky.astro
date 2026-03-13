@@ -7,12 +7,12 @@ interface Props {
   height?: number
 }
 
-const { class: extraClass, height = 18, width = 20 } = Astro.props
+const { class: extraClass, height = 18, width = 18 } = Astro.props
 ---
 
 <Icon
   {width}
   {height}
   name="socials/bluesky"
-  class:list={['class="w-8 hover:scale-125 duration-200', extraClass]}
+  class:list={['w-16 duration-200 hover:scale-125', extraClass]}
 />
