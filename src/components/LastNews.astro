@@ -7,7 +7,7 @@ import NewsCardGrid from "./NewsCardGrid.astro";
 
 <section
   id="news"
-  class="flex flex-col max-w-6xl w-full mx-auto px-4 justify-center items-center gap-10 py-20 text-white font-luckiest-guy"
+  class="flex flex-col max-w-6xl w-full mx-auto px-4 justify-center items-center gap-10 py-20 text-white font-luckiest-guy scroll-mt-16"
 >
   <h2 class="text-4xl lg:text-5xl font-luckiest-guy self-center">
     LATEST NEWS
@@ -18,8 +18,11 @@ import NewsCardGrid from "./NewsCardGrid.astro";
   >
     {
       news.map(({ image, link, title, class: extraClass }, index) => {
-        const newsCardClass = (extraClass ?? '') + (index >= 4 ? ' lg:hidden' : '')
-        return <NewsCardGrid {title} {link} {image} class={newsCardClass.trim()} />
+        const newsCardClass =
+          (extraClass ?? "") + (index >= 4 ? " lg:hidden" : "");
+        return (
+          <NewsCardGrid {title} {link} {image} class={newsCardClass.trim()} />
+        );
       })
     }
 

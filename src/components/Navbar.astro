@@ -3,10 +3,10 @@ import Link from "./Link.astro";
 import LogoRave from "../assets/Logo-Rave.svg";
 
 const menuItems = [
-	{ to: "#games", label: "GAMES" },
-	{ to: "#news", label: "NEWS" },
-	{ to: "#about", label: "ABOUT" },
-	{ to: "#contact", label: "CONTACT" },
+  { to: "#games", label: "GAMES" },
+  { to: "#news", label: "NEWS" },
+  { to: "#about", label: "ABOUT" },
+  { to: "#contact", label: "CONTACT" },
 ];
 ---
 
@@ -15,7 +15,7 @@ const menuItems = [
   id="main-nav"
 >
   <section class="flex justify-between max-w-6xl w-full mx-auto px-4">
-    <a href="/" class="group">
+    <a href="/#" class="group">
       <div
         id="nav-logo"
         class="w-[72px] h-[70px] rounded-full flex items-center justify-center transition-all duration-200 opacity-0 pointer-events-none group-hover:scale-105 group-hover:shadow-lg"
@@ -50,8 +50,6 @@ const menuItems = [
   </section>
 </nav>
 
-
-
 <script type="module">
   document.addEventListener("DOMContentLoaded", () => {
     const nav = document.getElementById("main-nav");
@@ -75,7 +73,7 @@ const menuItems = [
         },
         // Cambiamos el umbral para que el header aparezca
         // cuando el hero tenga menos de ~80% visible
-        { threshold: 0.8 }
+        { threshold: 0.8 },
       );
 
       navObserver.observe(hero);
@@ -91,12 +89,15 @@ const menuItems = [
           }
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.6 },
     );
 
     function updateActiveLinkByHash(hashValue) {
       links.forEach((link) => {
-        link.classList.toggle(activeClass, link.getAttribute("href") === hashValue);
+        link.classList.toggle(
+          activeClass,
+          link.getAttribute("href") === hashValue,
+        );
       });
     }
 
