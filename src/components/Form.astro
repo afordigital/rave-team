@@ -1,6 +1,6 @@
 <section
   id="contact"
-  class="text-white py-12 flex flex-col lg:flex-row-reverse gap-24 items-stretch max-w-6xl w-full mx-auto px-4"
+  class="text-white py-12 flex flex-col lg:flex-row-reverse gap-24 items-stretch max-w-6xl w-full mx-auto px-4 scroll-mt-16"
 >
   <!-- Texto lateral -->
   <article class="flex flex-col gap-y-1 basis-full lg:basis-1/2">
@@ -25,7 +25,12 @@
       value={import.meta.env.WEB3FORMS_API_KEY}
     />
 
-    <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
+    <input
+      type="checkbox"
+      class="hidden"
+      style="display:none"
+      name="botcheck"
+    />
 
     <label
       class="py-3 px-4 shadow-[4px_2px_0_rgba(250,250,250,1)] border border-white"
@@ -68,7 +73,8 @@
         data-captcha="true"
         data-lang="en"
         data-theme="dark"
-      ></div>
+      >
+      </div>
     </div>
 
     <div class="flex items-start gap-2 text-xs text-gray-200">
@@ -118,7 +124,9 @@
 <style>
   .input-button {
     box-shadow: 5px 5px 0 0 #ededed;
-    transition: box-shadow 0.15s ease-in-out, transform 0.15s ease-in-out;
+    transition:
+      box-shadow 0.15s ease-in-out,
+      transform 0.15s ease-in-out;
   }
 
   .input-button:hover {

@@ -2,11 +2,12 @@
 import Link from "./Link.astro";
 ---
 
-<section id="games" class="relative h-[700px] overflow-hidden">
+<section id="games" class="relative h-[700px] overflow-hidden scroll-mt-20">
   <!-- Top gradient to smooth transition from hero section -->
   <div
-    class="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#1b1026] via-[#1b1026]/60 to-transparent z-10"
-  ></div>
+    class="pointer-events-none absolute inset-x-0 top-0 h-32 bg-linear-to-b from-[#1b1026] via-[#1b1026]/60 to-transparent z-10"
+  >
+  </div>
   <img
     class="object-cover absolute inset-0 w-full h-full"
     src="/images/Arte_SPACEDIVA.png"
@@ -24,7 +25,7 @@ import Link from "./Link.astro";
         alt="Space Diva logo"
         class="mb-4 w-64 max-w-full"
       />
-      <p class="text-xl  flex max-w-md lg:w-8/12 w-5/6">
+      <p class="text-xl flex max-w-md lg:w-8/12 w-5/6">
         A game development studio creating projects that primarily we would play
         ourselves first, and then aim at massive audiences.
       </p>
