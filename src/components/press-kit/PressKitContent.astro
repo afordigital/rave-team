@@ -12,7 +12,8 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const descriptionParagraphs = t("presskit.description.paragraphs") as string[];
+const descriptionText = t("presskit.description.text") as string;
+const whatIsThisParagraphs = t("presskit.whatisthis.paragraphs") as string[];
 const featureItems = t("presskit.features.items") as string[];
 const aboutParagraphs = t("presskit.about.paragraphs") as string[];
 ---
@@ -39,9 +40,21 @@ const aboutParagraphs = t("presskit.about.paragraphs") as string[];
     >
       {t("presskit.description.heading") as string}
     </h2>
+    <p class="text-white/80 text-lg leading-relaxed">{descriptionText}</p>
+  </section>
+
+  <div class="mb-14 h-0.5 rainbow-border rounded-full opacity-40"></div>
+
+  <!-- What is this about? -->
+  <section class="mb-14">
+    <h2
+      class="font-luckiest-guy text-section-title theme-shadow-text text-white mb-4"
+    >
+      {t("presskit.whatisthis.heading") as string}
+    </h2>
     <div class="flex flex-col gap-4">
       {
-        descriptionParagraphs.map((paragraph) => (
+        whatIsThisParagraphs.map((paragraph) => (
           <p class="text-white/80 leading-relaxed">{paragraph}</p>
         ))
       }

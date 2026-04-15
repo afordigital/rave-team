@@ -72,19 +72,24 @@ export const ui = {
       "Official press kit for Space Diva by Rave Team. Download assets, screenshots, logos, and press materials.",
     "presskit.pitch.heading": "Pitch",
     "presskit.pitch.text":
-      "Space Diva is a fast-paced, neon-lit action game where you play as an intergalactic pop star fighting to reclaim her stolen stage — one alien wave at a time.",
+      "Space Diva is a visual novel which combines dialogue selection and interactive point & click experiences. Join Carmen, a somewhat absent-minded middle-aged lady who has to endure bizarre situations in her space truck. And possibly mess things up like crazy.",
     "presskit.description.heading": "Description",
-    "presskit.description.paragraphs": [
-      "Space Diva throws you into a vibrant galaxy ruled by rhythm, style, and pure firepower. As Diva, the most celebrated performer in the cosmos, you must battle through hordes of jealous aliens who have hijacked your tour ship and silenced your music.",
-      "Combining bullet-hell mechanics with combo-driven scoring, every level is a concert stage where your performance determines the outcome. Collect power-ups, unlock outfits, and master Diva's signature moves to turn each wave into a spectacular show.",
-      "With hand-crafted levels, a pulsating original soundtrack, and a vibrant pixel-art aesthetic, Space Diva is a love letter to arcade classics and pop culture rolled into one explosive package.",
+    "presskit.description.text":
+      "An interactive narrative experience about the most flamboyant beings in the universe.",
+    "presskit.whatisthis.heading": "What is this about?",
+    "presskit.whatisthis.paragraphs": [
+      "The galaxy was the dullest place in the universe… until Carmen arrived in her space truck, attracting the most talkative and mischievous creatures. Can you handle the chaos?",
+      "You play as Carmen, a somewhat absent-minded middle-aged wanderer cruising through the endless universe in her space truck. Her vehicle is packed with lost-and-found objects she has collected over the years.",
+      "Along the way, she meets curious and eccentric beings who seek her help. But be warned — her solutions might fix their problems… or make things much, much worse.",
+      "Depending on her choices, she will accumulate 'universe energy,' which could be used in her machine to obtain the object for the visitor. Once you deliver it, the story branches in unpredictable ways.",
+      "This energy can also be used to unlock new spells, such as powerful dialogue options that lead to amazing and unexpected story branches, or to reveal new insights about the world.",
     ],
     "presskit.features.heading": "Features",
     "presskit.features.items": [
-      "Bullet-hell action with combo-driven scoring system",
-      "Original neon-pop soundtrack composed specifically for the game",
-      "Unlockable outfits and cosmetic upgrades for Diva",
-      "Hand-crafted levels across 5 unique galactic stages",
+      "Funny branched and unpredictable dialogues",
+      "Upgrades and spells to customize the course of the story",
+      "Queer, colorful world full of eccentric characters",
+      "Unique, replayable adventures presented as comedy sketches",
     ],
     "presskit.download.button": "DOWNLOAD ALL ASSETS",
     "presskit.download.hint":
@@ -94,8 +99,7 @@ export const ui = {
     "presskit.logos.heading": "Logos",
     "presskit.about.heading": "About Rave Team",
     "presskit.about.paragraphs": [
-      "Rave Team is an independent game development studio passionate about creating bold, visually striking games that push creative boundaries. Founded by a small group of developers and artists, we believe games should be an unforgettable experience — not just a product.",
-      "Space Diva is our debut title, born from a love of arcade games, vibrant aesthetics, and the unstoppable energy of live music. We are committed to delivering a polished, joyful experience to players worldwide.",
+      "Rave Team is an emerging Spanish studio focused on creating unconventional, wild, and deranged narrative experiences. We blend the glamour of pop culture with the rebelliousness of urban culture to bring innovative stories to the video game industry.",
     ],
     "presskit.sidebar.developer": "Developer",
     "presskit.sidebar.publisher": "Publisher",
@@ -119,7 +123,7 @@ export const ui = {
     "nav.menu": "MENÚ",
 
     // Hero
-    "hero.title": "HISTORIAS LLAMATIVAS,<br /> EXPERIENCIAS DESQUICIADAS",
+    "hero.title": "FLASHY STORIES,<br /> DERANGED EXPERIENCES",
     "hero.cta": "WISHLIST SPACE DIVA",
 
     // Space Diva Section
@@ -173,19 +177,24 @@ export const ui = {
       "Kit de prensa oficial de Space Diva por Rave Team. Descarga assets, capturas de pantalla, logos y materiales de prensa.",
     "presskit.pitch.heading": "Pitch",
     "presskit.pitch.text":
-      "Space Diva es un frenético juego de acción con luces de neón donde encarnas a una estrella de pop intergaláctica que lucha por recuperar su escenario robado, una ola alienígena a la vez.",
+      "Space Diva es una novela visual que combina la selección de diálogos con experiencias interactivas de point & click. Únete a Carmen, una señora de mediana edad algo despistada que debe lidiar con situaciones surrealistas en su camión espacial... y que, muy posiblemente, la líe que flipas.",
     "presskit.description.heading": "Descripción",
-    "presskit.description.paragraphs": [
-      "Space Diva te lanza a una galaxia vibrante gobernada por el ritmo, el estilo y el puro poder de fuego. Como Diva, la artista más celebrada del cosmos, debes combatir hordas de alienígenas que han secuestrado tu nave de gira y silenciado tu música.",
-      "Combinando mecánicas de bullet-hell con puntuación por combos, cada nivel es un escenario de concierto donde tu actuación determina el resultado. Recoge potenciadores, desbloquea atuendos y domina los movimientos exclusivos de Diva para convertir cada oleada en un espectáculo impresionante.",
-      "Con niveles diseñados a mano, una trepidante banda sonora original y una vibrante estética pixel-art, Space Diva es una carta de amor a los clásicos de arcade y la cultura pop en un explosivo paquete.",
+    "presskit.description.text":
+      "Una experiencia narrativa interactiva sobre los seres más extravagantes del universo.",
+    "presskit.whatisthis.heading": "¿De qué va esto?",
+    "presskit.whatisthis.paragraphs": [
+      "La galaxia era de lo más aburrida hasta que Carmen llegó en su camioneta espacial y empezó a atraer a los seres más dicharacheros. ¿Soportarás?",
+      "Encarnarás a Carmen, una nómada de mediana edad algo despistada que recorre el universo infinito en su camión espacial. Su vehículo está repleto de objetos perdidos que ha ido recolectando a lo largo de los años.",
+      "En su camino, conocerá a seres curiosos y excéntricos que buscan su ayuda. Pero cuidado: sus soluciones podrían arreglar sus problemas... o empeorar las cosas mucho, mucho más.",
+      "Dependiendo de sus decisiones, acumulará \"energía universal\", que podrá usar en su máquina para obtener el objeto que el visitante necesita. Una vez entregado, la historia se ramificará de formas impredecibles.",
+      "Esta energía también sirve para desbloquear nuevos hechizos, como opciones de diálogo poderosas que conducen a ramificaciones sorprendentes e inesperadas, para revelar nuevos detalles sobre el universo o conseguir más objetos para entregar.",
     ],
     "presskit.features.heading": "Características",
     "presskit.features.items": [
-      "Acción estilo bullet-hell con sistema de puntuación por combos",
-      "Banda sonora original de pop neón compuesta específicamente para el juego",
-      "Atuendos desbloqueables y mejoras cosméticas para Diva",
-      "Niveles diseñados a mano a través de 5 escenarios galácticos únicos",
+      "Diálogos divertidos, ramificados e impredecibles",
+      "Mejoras y hechizos para personalizar el rumbo de la historia",
+      "Un mundo queer y colorido, lleno de personajes excéntricos",
+      "Aventuras únicas y rejugables presentadas como escenas de comedia",
     ],
     "presskit.download.button": "DESCARGAR TODOS LOS ASSETS",
     "presskit.download.hint":
@@ -195,8 +204,7 @@ export const ui = {
     "presskit.logos.heading": "Logos",
     "presskit.about.heading": "Sobre Rave Team",
     "presskit.about.paragraphs": [
-      "Rave Team es un estudio independiente de desarrollo de videojuegos apasionado por crear juegos audaces y visualmente impactantes que desafíen los límites creativos. Fundado por un pequeño grupo de desarrolladores y artistas, creemos que los juegos deben ser una experiencia inolvidable, no solo un producto.",
-      "Space Diva es nuestro título debut, nacido del amor por los juegos de arcade, las estéticas vibrantes y la energía imparable de la música en vivo. Estamos comprometidos a ofrecer una experiencia pulida y alegre a jugadores de todo el mundo.",
+      "Rave Team es un estudio español emergente centrado en crear experiencias narrativas disidentes, desquiciadas y dicharacheras. Combinamos el glamour de la cultura pop y lo más gamberro de la cultura urbana para traer novedosas historias a la industria del videojuego.",
     ],
     "presskit.sidebar.developer": "Desarrollador",
     "presskit.sidebar.publisher": "Editor",
