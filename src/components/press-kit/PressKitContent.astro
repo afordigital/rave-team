@@ -1,0 +1,127 @@
+---
+import type { SupportedLang } from "../../i18n/ui";
+import { useTranslations } from "../../i18n/utils";
+import PressKitTrailer from "./PressKitTrailer.astro";
+import PressKitGallery from "./PressKitGallery.astro";
+import PressKitLogos from "./PressKitLogos.astro";
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const descriptionParagraphs = t("presskit.description.paragraphs") as string[];
+const featureItems = t("presskit.features.items") as string[];
+const aboutParagraphs = t("presskit.about.paragraphs") as string[];
+---
+
+<div>
+  <!-- Pitch -->
+  <section class="mb-14">
+    <h2
+      class="font-luckiest-guy text-section-title theme-shadow-text text-white mb-4"
+    >
+      {t("presskit.pitch.heading") as string}
+    </h2>
+    <p class="text-white/80 text-lg leading-relaxed">
+      {t("presskit.pitch.text") as string}
+    </p>
+  </section>
+
+  <div class="mb-14 h-0.5 rainbow-border rounded-full opacity-40"></div>
+
+  <!-- Description -->
+  <section class="mb-14">
+    <h2
+      class="font-luckiest-guy text-section-title theme-shadow-text text-white mb-4"
+    >
+      {t("presskit.description.heading") as string}
+    </h2>
+    <div class="flex flex-col gap-4">
+      {
+        descriptionParagraphs.map((paragraph) => (
+          <p class="text-white/80 leading-relaxed">{paragraph}</p>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="mb-14">
+    <h2
+      class="font-luckiest-guy text-section-title theme-shadow-text text-white mb-6"
+    >
+      {t("presskit.features.heading") as string}
+    </h2>
+    <ul class="flex flex-col gap-4">
+      {
+        featureItems.map((item) => (
+          <li class="flex gap-4 items-start leading-relaxed group">
+            <span class="shrink-0 mt-1 w-6 h-6 flex items-center justify-center">
+              <span class="block w-2.5 h-2.5 bg-[#00FFF9] rotate-45 shadow-[0_0_8px_rgba(0,255,249,0.5)] group-hover:shadow-[0_0_14px_rgba(0,255,249,0.8)] transition-shadow duration-300" />
+            </span>
+            <span class="text-white/80">{item}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <div class="mb-14 h-0.5 rainbow-border rounded-full opacity-40"></div>
+
+  <!-- Trailer -->
+  <PressKitTrailer heading={t("presskit.trailer.heading") as string} />
+
+  <!-- Gallery -->
+  <PressKitGallery heading={t("presskit.gallery.heading") as string} />
+
+  <!-- Download -->
+  <section class="flex flex-col items-center gap-4 text-center mb-14">
+    <a
+      href="/downloads/SpaceDiva_PressKit.zip"
+      download
+      class="flex items-center justify-center gap-3 bg-white text-primary px-6 py-4 font-luckiest-guy text-xl tracking-wider shadow-[0_0_0_rgba(237,237,237,1)] hover:shadow-[5px_5px_0_rgba(237,237,237,0.5)] transition duration-150 ease-in-out hover:-translate-y-0.5 hover:-translate-x-0.5"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"
+        ></path>
+      </svg>
+      {t("presskit.download.button") as string}
+    </a>
+    <p class="text-white/40 text-xs tracking-wider">
+      {t("presskit.download.hint") as string}
+    </p>
+  </section>
+
+  <div class="mb-14 h-0.5 rainbow-border rounded-full opacity-40"></div>
+
+  <!-- Logos -->
+  <PressKitLogos heading={t("presskit.logos.heading") as string} />
+
+  <div class="mb-14 h-0.5 rainbow-border rounded-full opacity-40"></div>
+
+  <!-- About -->
+  <section class="mb-14">
+    <h2
+      class="font-luckiest-guy text-section-title theme-shadow-text text-white mb-4"
+    >
+      {t("presskit.about.heading") as string}
+    </h2>
+    <div class="flex flex-col gap-4">
+      {
+        aboutParagraphs.map((paragraph) => (
+          <p class="text-white/80 leading-relaxed">{paragraph}</p>
+        ))
+      }
+    </div>
+  </section>
+</div>

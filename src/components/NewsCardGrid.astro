@@ -3,18 +3,22 @@ import Link from "./Link.astro";
 import ArrowRight from "./ui/ArrowRight.astro";
 
 interface Props {
-  link: string
-  title: string
-  image: string
-  class?: string
+  link: string;
+  title: string;
+  image: string;
+  readMoreLabel: string;
+  class?: string;
 }
 
-const { title, link, image, class: extraClass } = Astro.props;
+const { title, link, image, readMoreLabel, class: extraClass } = Astro.props;
 ---
 
-<article class:list={['flex max-lg:flex-col', extraClass]}>
-  <img src={image} alt="img" class="object-cover" />
-  <div class="bg-white grow-1 flex flex-col gap-4 p-6" style="line-height: normal;">
+<article class:list={["flex max-lg:flex-col", extraClass]}>
+  <img src={image} alt={title} class="object-cover" />
+  <div
+    class="bg-white grow-1 flex flex-col gap-4 p-6"
+    style="line-height: normal;"
+  >
     <h3 class="text-[28px] leading-tight">{title}</h3>
     <Link
       external
@@ -24,7 +28,7 @@ const { title, link, image, class: extraClass } = Astro.props;
       <span
         class="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:border-b after:border-black after:border-dotted after:transition-all after:duration-300 after:ease-in-out after:content-[''] group-hover:after:w-full"
       >
-        Read more
+        {readMoreLabel}
       </span>
       <ArrowRight class="w-5 h-5" />
     </Link>

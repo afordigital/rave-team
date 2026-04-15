@@ -1,8 +1,43 @@
 ---
 import Link from "./Link.astro";
-import { news } from "../data/news.ts";
 import ArrowRight from "./ui/ArrowRight.astro";
 import NewsCardGrid from "./NewsCardGrid.astro";
+import type { SupportedLang } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const newsClasses = [
+  "lg:first-news",
+  "lg:second-news",
+  "lg:third-news",
+  "lg:fourth-news",
+  "",
+  "",
+];
+
+const newsImages = [
+  "/images/news-img-1.webp",
+  "/images/news-img-2.webp",
+  "/images/news-img-3.webp",
+  "/images/news-img-1.webp",
+  "/images/news-img-2.webp",
+  "/images/news-img-3.webp",
+];
+
+const news = Array.from({ length: 6 }, (_, i) => ({
+  title: t(`news.${i + 1}.title` as keyof typeof import("../i18n/ui").ui.en) as string,
+  image: newsImages[i],
+  link: "/",
+  class: newsClasses[i],
+}));
+
+const readMoreLabel = t("news.card.readmore") as string;
 ---
 
 <section
@@ -10,7 +45,7 @@ import NewsCardGrid from "./NewsCardGrid.astro";
   class="flex flex-col max-w-6xl w-full mx-auto px-4 justify-center items-center gap-10 py-20 text-white font-luckiest-guy scroll-mt-16"
 >
   <h2 class="text-4xl lg:text-5xl font-luckiest-guy self-center">
-    LATEST NEWS
+    {t("news.title") as string}
   </h2>
 
   <article
@@ -21,7 +56,13 @@ import NewsCardGrid from "./NewsCardGrid.astro";
         const newsCardClass =
           (extraClass ?? "") + (index >= 4 ? " lg:hidden" : "");
         return (
-          <NewsCardGrid {title} {link} {image} class={newsCardClass.trim()} />
+          <NewsCardGrid
+            {title}
+            {link}
+            {image}
+            {readMoreLabel}
+            class={newsCardClass.trim()}
+          />
         );
       })
     }
@@ -36,7 +77,7 @@ import NewsCardGrid from "./NewsCardGrid.astro";
         <span
           class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 after:ease-in-out group-hover:after:w-full"
         >
-          Read more updates and news
+          {t("news.readmore") as string}
         </span>
         <ArrowRight
           class="fill-white w-8 h-8 transform transition-transform duration-300 ease-in-out group-hover:translate-x-1"

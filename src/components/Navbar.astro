@@ -1,12 +1,28 @@
 ---
 import Link from "./Link.astro";
 import LogoRave from "../assets/Logo-Rave.svg";
+import type { SupportedLang } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+
+const currentPath = Astro.url.pathname;
+const isSpanish = currentPath.startsWith("/es/") || currentPath === "/es";
+const currentLang: SupportedLang = isSpanish ? "es" : "en";
+const t = useTranslations(currentLang);
+
+const langPrefix = isSpanish ? "/es" : "";
+const pathWithoutLang = isSpanish
+  ? currentPath.replace(/^\/es\/?/, "/")
+  : currentPath;
+const alternatePath = isSpanish
+  ? pathWithoutLang
+  : `/es${currentPath === "/" ? "" : currentPath}`;
 
 const menuItems = [
-  { to: "#games", label: "GAMES" },
-  { to: "#news", label: "NEWS" },
-  { to: "#about", label: "ABOUT" },
-  { to: "#contact", label: "CONTACT" },
+  { to: `${langPrefix}/#games`, label: t("nav.games") as string },
+  { to: `${langPrefix}/#news`, label: t("nav.news") as string },
+  { to: `${langPrefix}/#about`, label: t("nav.about") as string },
+  { to: `${langPrefix}/#contact`, label: t("nav.contact") as string },
+  { to: `${langPrefix}/press-kit`, label: t("nav.presskit") as string },
 ];
 ---
 
@@ -15,7 +31,7 @@ const menuItems = [
   id="main-nav"
 >
   <section class="flex justify-between max-w-6xl w-full mx-auto px-4">
-    <a href="/#" class="group">
+    <a href={`${langPrefix}/#`} class="group">
       <div
         id="nav-logo"
         class="w-[72px] h-[70px] rounded-full flex items-center justify-center transition-all duration-200 opacity-0 pointer-events-none group-hover:scale-105 group-hover:shadow-lg"
@@ -28,40 +44,190 @@ const menuItems = [
       </div>
     </a>
 
+    <!-- Desktop menu -->
     <ul
-      class="flex text-2xl tracking-wider inner-text-shadow font-luckiest-guy items-center gap-8 text-white"
+      class="hidden lg:flex text-2xl tracking-wider inner-text-shadow font-luckiest-guy items-center gap-8 text-white"
     >
-      <li class="theme-shadow-text lg:hidden">
-        <Link to="#" class="w-full text-left"> MENU </Link>
-      </li>
       {
         menuItems.map(({ to, label }) => (
-          <li class="hidden theme-shadow-text lg:block">
+          <li class="theme-shadow-text">
             <Link
               to={to}
-              class="nav-link relative inline-block after:block after:absolute after:left-0 after:bottom-0 after:h-[4px] after:w-0 after:bg-current after:transition-all after:duration-400 hover:after:w-full focus:after:w-full"
+              class="nav-link relative inline-block after:block after:absolute after:left-0 after:bottom-0 after:h-1 after:w-0 after:bg-current after:transition-all after:duration-400 hover:after:w-full focus:after:w-full"
             >
               {label}
             </Link>
           </li>
         ))
       }
+      <li class="flex items-center">
+        <a
+          href={alternatePath}
+          aria-label={currentLang === "en" ? "Cambiar a Español" : "Switch to English"}
+          class="block w-7 h-7 -translate-y-1 rounded-full overflow-hidden border-2 border-white/40 hover:border-white hover:scale-110 transition-all duration-200"
+        >
+          <svg viewBox="0 0 36 36" class="w-full h-full">
+            <defs>
+              <clipPath id="flag-left">
+                <rect x="0" y="0" width="18" height="36" />
+              </clipPath>
+              <clipPath id="flag-right">
+                <rect x="18" y="0" width="18" height="36" />
+              </clipPath>
+            </defs>
+            <g clip-path="url(#flag-left)">
+              <rect x="0" y="0" width="36" height="9" fill="#c60b1e" />
+              <rect x="0" y="9" width="36" height="18" fill="#ffc400" />
+              <rect x="0" y="27" width="36" height="9" fill="#c60b1e" />
+              {currentLang !== "es" && (
+                <rect x="0" y="0" width="18" height="36" fill="rgba(0,0,0,0.55)" />
+              )}
+            </g>
+            <g clip-path="url(#flag-right)">
+              <rect x="0" y="0" width="36" height="36" fill="#012169" />
+              <path d="M0 0L36 36M36 0L0 36" stroke="#fff" stroke-width="6" />
+              <path d="M0 0L36 36M36 0L0 36" stroke="#c8102e" stroke-width="3" />
+              <path d="M18 0V36M0 18H36" stroke="#fff" stroke-width="8" />
+              <path d="M18 0V36M0 18H36" stroke="#c8102e" stroke-width="4.5" />
+              {currentLang !== "en" && (
+                <rect x="18" y="0" width="18" height="36" fill="rgba(0,0,0,0.55)" />
+              )}
+            </g>
+            <line x1="18" y1="0" x2="18" y2="36" stroke="white" stroke-width="1.5" />
+          </svg>
+        </a>
+      </li>
     </ul>
+
+    <!-- Mobile hamburger -->
+    <button
+      type="button"
+      id="mobile-menu-btn"
+      class="lg:hidden flex items-center text-2xl tracking-wider font-luckiest-guy text-white theme-shadow-text cursor-pointer"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      <span id="menu-label">{t("nav.menu") as string}</span>
+      <span id="close-label" class="hidden">✕</span>
+    </button>
   </section>
 </nav>
 
-<script type="module">
-  document.addEventListener("DOMContentLoaded", () => {
+<!-- Mobile menu overlay -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-40 flex-col bg-primary/95 backdrop-blur-sm pt-24 pb-8 px-6 transition-all duration-300 ease-in-out opacity-0 pointer-events-none -translate-y-5"
+  style="display: flex;"
+>
+  <ul class="flex flex-col gap-6 font-luckiest-guy text-3xl tracking-wider text-white text-center">
+    {
+      menuItems.map(({ to, label }, i) => (
+        <li class="theme-shadow-text transition-all duration-300 ease-out opacity-0 translate-y-3" style={`transition-delay: ${i * 60}ms;`}>
+          <a href={to} class="mobile-nav-link block py-2">{label}</a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <!-- Mobile language toggle -->
+  <div class="mt-8 flex justify-center">
+    <a
+      href={alternatePath}
+      aria-label={currentLang === "en" ? "Cambiar a Español" : "Switch to English"}
+      class="block w-10 h-10 rounded-full overflow-hidden border-2 border-white/40"
+    >
+      <svg viewBox="0 0 36 36" class="w-full h-full">
+        <defs>
+          <clipPath id="flag-left-m">
+            <rect x="0" y="0" width="18" height="36" />
+          </clipPath>
+          <clipPath id="flag-right-m">
+            <rect x="18" y="0" width="18" height="36" />
+          </clipPath>
+        </defs>
+        <g clip-path="url(#flag-left-m)">
+          <rect x="0" y="0" width="36" height="9" fill="#c60b1e" />
+          <rect x="0" y="9" width="36" height="18" fill="#ffc400" />
+          <rect x="0" y="27" width="36" height="9" fill="#c60b1e" />
+          {currentLang !== "es" && (
+            <rect x="0" y="0" width="18" height="36" fill="rgba(0,0,0,0.55)" />
+          )}
+        </g>
+        <g clip-path="url(#flag-right-m)">
+          <rect x="0" y="0" width="36" height="36" fill="#012169" />
+          <path d="M0 0L36 36M36 0L0 36" stroke="#fff" stroke-width="6" />
+          <path d="M0 0L36 36M36 0L0 36" stroke="#c8102e" stroke-width="3" />
+          <path d="M18 0V36M0 18H36" stroke="#fff" stroke-width="8" />
+          <path d="M18 0V36M0 18H36" stroke="#c8102e" stroke-width="4.5" />
+          {currentLang !== "en" && (
+            <rect x="18" y="0" width="18" height="36" fill="rgba(0,0,0,0.55)" />
+          )}
+        </g>
+        <line x1="18" y1="0" x2="18" y2="36" stroke="white" stroke-width="1.5" />
+      </svg>
+    </a>
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
     const nav = document.getElementById("main-nav");
     const hero = document.querySelector("#hero");
     const navLogo = document.getElementById("nav-logo");
     const links = document.querySelectorAll(".nav-link");
     const activeClass = "after:w-full";
 
+    // Mobile menu
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const hamburgerIcon = document.getElementById("menu-label");
+    const closeIcon = document.getElementById("close-label");
+    const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+
+    if (menuBtn && mobileMenu && hamburgerIcon && closeIcon) {
+      var menuItems = mobileMenu.querySelectorAll("li");
+
+      function openMenu() {
+        mobileMenu.classList.remove("opacity-0", "pointer-events-none", "-translate-y-5");
+        mobileMenu.classList.add("opacity-100", "pointer-events-auto", "translate-y-0");
+        hamburgerIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+        menuBtn.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+        menuItems.forEach(function (item) {
+          item.classList.remove("opacity-0", "translate-y-3");
+          item.classList.add("opacity-100", "translate-y-0");
+        });
+      }
+
+      function closeMenu() {
+        menuItems.forEach(function (item) {
+          item.classList.add("opacity-0", "translate-y-3");
+          item.classList.remove("opacity-100", "translate-y-0");
+        });
+        mobileMenu.classList.add("opacity-0", "pointer-events-none", "-translate-y-5");
+        mobileMenu.classList.remove("opacity-100", "pointer-events-auto", "translate-y-0");
+        hamburgerIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+        menuBtn.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+
+      menuBtn.addEventListener("click", function () {
+        var isOpen = mobileMenu.classList.contains("opacity-100");
+        if (isOpen) closeMenu(); else openMenu();
+      });
+
+      mobileLinks.forEach(function (link) {
+        link.addEventListener("click", closeMenu);
+      });
+    }
+
+    // Hero observer
     if (hero && nav) {
       const navObserver = new IntersectionObserver(
-        ([entry]) => {
-          const isHeroVisible = entry.isIntersecting;
+        function (entries) {
+          const isHeroVisible = entries[0].isIntersecting;
           nav.classList.toggle("bg-primary", !isHeroVisible);
           nav.classList.toggle("bg-transparent", isHeroVisible);
 
@@ -71,21 +237,26 @@ const menuItems = [
             navLogo.classList.toggle("opacity-100", !isHeroVisible);
           }
         },
-        // Cambiamos el umbral para que el header aparezca
-        // cuando el hero tenga menos de ~80% visible
         { threshold: 0.8 },
       );
 
       navObserver.observe(hero);
     }
 
+    // Section observer
     const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const id = `#${entry.target.id}`;
-          const link = document.querySelector(`.nav-link[href="${id}"]`);
-          if (link) {
-            link.classList.toggle(activeClass, entry.isIntersecting);
+      function (entries) {
+        entries.forEach(function (entry) {
+          const hash = "#" + entry.target.id;
+          var matchedLink = null;
+          links.forEach(function (link) {
+            const href = link.getAttribute("href") || "";
+            if (href.endsWith("/" + hash) || href.endsWith(hash)) {
+              matchedLink = link;
+            }
+          });
+          if (matchedLink) {
+            matchedLink.classList.toggle(activeClass, entry.isIntersecting);
           }
         });
       },
@@ -93,26 +264,40 @@ const menuItems = [
     );
 
     function updateActiveLinkByHash(hashValue) {
-      links.forEach((link) => {
-        link.classList.toggle(
-          activeClass,
-          link.getAttribute("href") === hashValue,
-        );
+      links.forEach(function (link) {
+        const href = link.getAttribute("href") || "";
+        if (!href.includes("#")) return;
+        const hashIndex = href.indexOf("#");
+        const linkHash = hashIndex >= 0 ? href.substring(hashIndex) : "";
+        link.classList.toggle(activeClass, linkHash !== "" && linkHash === hashValue);
       });
     }
 
+    const currentPath = window.location.pathname.replace(/\/$/, "");
+    links.forEach(function (link) {
+      const href = link.getAttribute("href") || "";
+      if (!href.includes("#") && href.replace(/\/$/, "") === currentPath) {
+        link.classList.add(activeClass);
+      }
+    });
+
     updateActiveLinkByHash(window.location.hash || "");
 
-    window.addEventListener("hashchange", () => {
+    window.addEventListener("hashchange", function () {
       updateActiveLinkByHash(window.location.hash || "");
     });
 
-    links.forEach((link) => {
-      const sectionId = link.getAttribute("href");
-      if (sectionId?.startsWith("#")) {
-        const section = document.querySelector(sectionId);
-        if (section) sectionObserver.observe(section);
-      }
-    });
+    const isLanding = currentPath === "" || currentPath === "/" || currentPath === "/es";
+    if (isLanding) {
+      links.forEach(function (link) {
+        const href = link.getAttribute("href") || "";
+        const hashIndex = href.indexOf("#");
+        if (hashIndex >= 0) {
+          const sectionId = href.substring(hashIndex);
+          const section = document.querySelector(sectionId);
+          if (section) sectionObserver.observe(section);
+        }
+      });
+    }
   });
 </script>

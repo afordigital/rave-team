@@ -1,0 +1,149 @@
+---
+import Icon from "../../components/Icon.astro";
+import Link from "../../components/Link.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import LastNews from "../../components/LastNews.astro";
+import AboutUs from "../../components/AboutUs.astro";
+import Parallax from "../../components/Parallax.astro";
+import SpaceDivaSection from "../../components/SpaceDivaSection.astro";
+import LogoRave from "../../assets/Logo-Rave.svg";
+import Instagram from "../../components/ui/Instagram.astro";
+import Tiktok from "../../components/ui/Tiktok.astro";
+import Youtube from "../../components/ui/Youtube.astro";
+import Bluesky from "../../components/ui/Bluesky.astro";
+import type { SupportedLang } from "../../i18n/ui";
+import { useTranslations } from "../../i18n/utils";
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined }, props: { lang: "en" as SupportedLang } },
+    { params: { lang: "es" }, props: { lang: "es" as SupportedLang } },
+  ];
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const title = t("site.title") as string;
+const description = t("site.description") as string;
+---
+
+<BaseLayout {title} {description} lang={lang}>
+  <Navbar />
+  <main
+    class="w-full h-full relative min-h-screen bg-cover bg-[url('/images/background.webp')] bg-no-repeat bg-center"
+    id="hero"
+  >
+    <Parallax />
+    <div
+      class="font-luckiest-guy absolute w-full text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center flex flex-col items-center gap-12"
+    >
+      <div
+        class="w-[110px] h-[106px] rounded-full flex items-center justify-center"
+        style="
+        background: linear-gradient(180deg, #B485FF4D 30%, #B485FF 100%);
+        box-shadow: inset 3.23px 3.23px 2.58px rgba(255, 255, 255, 0.08);
+      "
+      >
+        <LogoRave class="w-[80px] h-[76px]" />
+      </div>
+
+      <h1 class="text-hero-title text-shadow-[7px_10px_0_rgba(0,0,0,1)]" set:html={t("hero.title") as string} />
+      <Link
+        external
+        to="https://store.steampowered.com/app/3044510/Space_Diva/?utm_source=web&utm_medium=wishlistbutton&utm_campaign=web_wishlistbutton"
+        class="text-black hover:shadow-[3px_3px_0_rgba(0,0,0,1)] items-center transition duration-150 ease-in-out hover:translate-[8px] flex gap-2 shadow-[10px_10px_0_rgba(0,0,0,1)] bg-white px-6 py-4 text-hero-action"
+      >
+        <Icon name="steam" class="size-8 inline-block" />
+        {t("hero.cta") as string}
+      </Link>
+    </div>
+
+    <div
+      class="absolute bottom-6 right-6 flex gap-x-4 items-center justify-center text-white"
+    >
+      <div class="group relative">
+        <Link
+          external
+          aria-label="Instagram"
+          to="https://www.instagram.com/raveteamgames/"
+          class="social-icon"
+        >
+          <Instagram />
+        </Link>
+        <span
+          class="absolute -top-8 left-[50%] -translate-x-[50%]
+          z-20 origin-left scale-0 border
+          border-gray-300 bg-white text-sm font-bold
+          shadow-md transition-all duration-300 ease-in-out
+          group-hover:scale-100 text-black"
+          >Instagram</span
+        >
+      </div>
+
+      <div class="group relative">
+        <Link
+          external
+          aria-label="TikTok"
+          to="https://www.tiktok.com/@raveteamgames"
+          class="social-icon"
+        >
+          <Tiktok />
+        </Link>
+        <span
+          class="absolute -top-8 left-[50%] -translate-x-[50%]
+          z-20 origin-left scale-0 border
+          border-gray-300 bg-white text-sm font-bold
+          shadow-md transition-all duration-300 ease-in-out
+          group-hover:scale-100 text-black"
+          >TikTok</span
+        >
+      </div>
+
+      <div class="group relative">
+        <Link
+          external
+          aria-label="YouTube"
+          to="https://www.youtube.com/@raveteamgames"
+          class="social-icon"
+        >
+          <Youtube />
+        </Link>
+        <span
+          class="absolute -top-8 left-[50%] -translate-x-[50%]
+          z-20 origin-left scale-0 border
+          border-gray-300 bg-white text-sm font-bold
+          shadow-md transition-all duration-300 ease-in-out
+          group-hover:scale-100 text-black"
+          >YouTube</span
+        >
+      </div>
+
+      <div class="group relative">
+        <Link
+          external
+          aria-label="Bluesky"
+          to="https://bsky.app/profile/raveteamgames.bsky.social"
+          class="social-icon"
+        >
+          <Bluesky />
+        </Link>
+        <span
+          class="absolute -top-8 left-[50%] -translate-x-[50%]
+          z-20 origin-left scale-0 border
+          border-gray-300 bg-white text-sm font-bold
+          shadow-md transition-all duration-300 ease-in-out
+          group-hover:scale-100 text-black"
+          >Bluesky</span
+        >
+      </div>
+    </div>
+  </main>
+  <SpaceDivaSection {lang} />
+  <LastNews {lang} />
+  <section class="bg-secondary">
+    <AboutUs {lang} />
+  </section>
+  <Footer {lang} />
+</BaseLayout>
