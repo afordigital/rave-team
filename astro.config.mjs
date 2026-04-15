@@ -12,12 +12,18 @@ export default defineConfig({
   integrations: [
     astroIcon({
       include: {
-        lucide: ['*'], 
+        lucide: ['*'],
       },
     }),iconTyping()],
   vite: {
     plugins: [tailwindcss()],
   },
-
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "es"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   adapter: vercel(),
 });

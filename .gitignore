@@ -25,3 +25,8 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .vercel
+
+# claude setting folder & file
+.atl
+.claude
+CLAUDE.md
