@@ -7,9 +7,10 @@ interface Props {
 	title: string;
 	description: string;
 	body?: HTMLAttributes<"body">;
+	lang?: string;
 }
 
-const { description, title, body } = Astro.props;
+const { description, title, body, lang = "en" } = Astro.props;
 
 const siteUrl = BASE_URL || Astro.url.origin;
 const faviconImagePath = `${siteUrl}/favicon.svg`;
@@ -29,7 +30,7 @@ const themeColor = "#F165BE";
 ---
 
 <!doctype html>
-<html class="scroll-smooth" lang="en">
+<html class="scroll-smooth" lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

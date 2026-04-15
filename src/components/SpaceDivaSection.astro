@@ -1,9 +1,17 @@
 ---
 import Link from "./Link.astro";
+import type { SupportedLang } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section id="games" class="relative h-[700px] overflow-hidden scroll-mt-20">
-  <!-- Top gradient to smooth transition from hero section -->
   <div
     class="pointer-events-none absolute inset-x-0 top-0 h-32 bg-linear-to-b from-[#1b1026] via-[#1b1026]/60 to-transparent z-10"
   >
@@ -26,8 +34,7 @@ import Link from "./Link.astro";
         class="mb-4 w-64 max-w-full"
       />
       <p class="text-xl flex max-w-md lg:w-8/12 w-5/6">
-        A game development studio creating projects that primarily we would play
-        ourselves first, and then aim at massive audiences.
+        {t("spacediva.description") as string}
       </p>
       <div
         class="mt-5 mb-25 flex flex-col-reverse lg:flex-row space-y-reverse space-y-4 lg:space-y-0 lg:space-x-4 lg:w-9/12 text-center text-xl"
@@ -37,15 +44,15 @@ import Link from "./Link.astro";
           to="https://store.steampowered.com/app/3044510/Space_Diva/?utm_source=web&utm_medium=wishlistbutton&utm_campaign=web_wishlistbutton"
           class="text-primary hover:shadow-[5px_5px_0_rgba(237,237,237,5)] flex items-center justify-center transition duration-150 ease-in-out hover:translate-[-8px] shadow-[0_0_0_rgba(237,237,237,1)] bg-white px-3 py-5 w-80 lg:w-55 h-[55px] font-luckiest-guy"
         >
-          WISHLIST
+          {t("spacediva.btn.wishlist") as string}
         </Link>
 
         <Link
           external
-          to="/docs/PressKit.pdf"
+          to="/press-kit"
           class="text-white hover:shadow-[5px_5px_0_rgba(237,237,237,5)] flex items-center justify-center transition duration-150 ease-in-out hover:translate-[-8px] shadow-[0_0_0_rgba(237,237,237,1)] border-3 border-white px-3 py-5 lg:w-55 h-[55px] font-luckiest-guy"
         >
-          PRESS KIT
+          {t("spacediva.btn.presskit") as string}
         </Link>
       </div>
     </div>

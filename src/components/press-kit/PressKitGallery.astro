@@ -1,0 +1,284 @@
+---
+interface Props {
+  heading: string;
+}
+
+const { heading } = Astro.props;
+
+const carouselItems = Array.from({ length: 10 }, (_, i) => ({
+  src: `/images/press-kit/carousel/carousel_${i + 1}.webp`,
+  alt: `Space Diva Gameplay Screenshot ${i + 1}`,
+}));
+---
+
+<section class="mb-14">
+  <h2
+    class="font-luckiest-guy text-section-title theme-shadow-text text-white mb-6"
+  >
+    {heading}
+  </h2>
+
+  <!-- Carousel -->
+  <div class="relative group/carousel" id="pk-carousel" tabindex="0" role="region" aria-label="Screenshot gallery">
+    <div
+      class="absolute -inset-[2px] rounded-lg opacity-30 group-hover/carousel:opacity-50 transition-opacity duration-500"
+      style="background: linear-gradient(135deg, #00FFF9, #c31c96, #B485FF, #00FFF9); background-size: 300% 300%; animation: glow-shift 6s ease-in-out infinite; filter: blur(4px);"
+    >
+    </div>
+    <div
+      class="absolute inset-0 translate-x-[6px] translate-y-[6px] bg-black/30 rounded-lg"
+    >
+    </div>
+
+    <div
+      class="relative overflow-hidden rounded-lg border-[3px] border-white bg-black"
+    >
+      <div
+        class="flex transition-transform duration-500 ease-in-out"
+        id="pk-carousel-track"
+      >
+        {
+          carouselItems.map((shot, i) => (
+            <div class="w-full shrink-0">
+              <img
+                src={shot.src}
+                alt={shot.alt}
+                class="w-full aspect-video object-cover cursor-pointer"
+                loading="lazy"
+                data-lightbox-index={i}
+              />
+            </div>
+          ))
+        }
+      </div>
+
+      <button
+        type="button"
+        id="pk-prev"
+        class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-black/60 border-2 border-white/30 text-white hover:bg-secondary hover:border-secondary transition-all duration-200 opacity-0 group-hover/carousel:opacity-100 cursor-pointer"
+        style="clip-path: polygon(0 0, 100% 0, calc(100% - 4px) 100%, 0 100%);"
+        aria-label="Previous screenshot"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+          <path d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      <button
+        type="button"
+        id="pk-next"
+        class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-black/60 border-2 border-white/30 text-white hover:bg-secondary hover:border-secondary transition-all duration-200 opacity-0 group-hover/carousel:opacity-100 cursor-pointer"
+        style="clip-path: polygon(4px 0, 100% 0, 100% 100%, 0 100%);"
+        aria-label="Next screenshot"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+          <path d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+
+      <div
+        class="absolute bottom-3 right-3 z-10 bg-black/70 border border-white/20 px-3 py-1 text-xs font-bold tracking-wider text-white/80 font-luckiest-guy"
+        style="clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);"
+      >
+        <span id="pk-current">1</span> / {carouselItems.length}
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-center gap-2 mt-4" id="pk-dots">
+    {
+      carouselItems.map((_, i) => (
+        <button
+          type="button"
+          data-index={i}
+          class:list={[
+            "pk-dot w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer",
+            i === 0
+              ? "bg-secondary shadow-[0_0_8px_rgba(195,28,150,0.6)] scale-125"
+              : "bg-white/30 hover:bg-white/50",
+          ]}
+          aria-label={`Go to screenshot ${i + 1}`}
+        />
+      ))
+    }
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div
+  id="pk-lightbox"
+  class="fixed inset-0 z-[100] hidden items-center justify-center"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Screenshot preview"
+>
+  <div id="pk-lightbox-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+
+  <button
+    type="button"
+    id="pk-lightbox-close"
+    class="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full transition-all duration-200 cursor-pointer"
+    aria-label="Close preview"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path d="M18 6L6 18M6 6l12 12"></path>
+    </svg>
+  </button>
+
+  <button
+    type="button"
+    id="pk-lightbox-prev"
+    class="absolute left-3 lg:left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center text-white/70 hover:text-white bg-white/10 hover:bg-secondary/80 rounded-full transition-all duration-200 cursor-pointer"
+    aria-label="Previous screenshot"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+      <path d="M15 19l-7-7 7-7"></path>
+    </svg>
+  </button>
+
+  <button
+    type="button"
+    id="pk-lightbox-next"
+    class="absolute right-3 lg:right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center text-white/70 hover:text-white bg-white/10 hover:bg-secondary/80 rounded-full transition-all duration-200 cursor-pointer"
+    aria-label="Next screenshot"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+      <path d="M9 5l7 7-7 7"></path>
+    </svg>
+  </button>
+
+  <div class="relative z-[1] max-w-[90vw] max-h-[85vh] flex items-center justify-center">
+    <img
+      id="pk-lightbox-img"
+      src=""
+      alt=""
+      class="max-w-full max-h-[85vh] object-contain rounded-lg border-2 border-white/20 shadow-[0_0_40px_rgba(0,0,0,0.5)] transition-opacity duration-300"
+    />
+  </div>
+
+  <div
+    class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 bg-black/60 border border-white/20 px-4 py-1.5 text-sm font-bold tracking-wider text-white/80 font-luckiest-guy rounded-full"
+  >
+    <span id="pk-lightbox-counter"></span>
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    var track = document.getElementById("pk-carousel-track");
+    var prevBtn = document.getElementById("pk-prev");
+    var nextBtn = document.getElementById("pk-next");
+    var counter = document.getElementById("pk-current");
+    var dots = document.querySelectorAll(".pk-dot");
+    var lightbox = document.getElementById("pk-lightbox");
+    var lightboxImg = document.getElementById("pk-lightbox-img");
+    var lightboxClose = document.getElementById("pk-lightbox-close");
+    var lightboxBackdrop = document.getElementById("pk-lightbox-backdrop");
+    var lightboxPrev = document.getElementById("pk-lightbox-prev");
+    var lightboxNext = document.getElementById("pk-lightbox-next");
+    var lightboxCounter = document.getElementById("pk-lightbox-counter");
+    var carouselImages = document.querySelectorAll("[data-lightbox-index]");
+
+    if (!track || !prevBtn || !nextBtn || !counter) return;
+
+    var totalSlides = track.children.length;
+    var current = 0;
+    var lightboxIndex = 0;
+
+    function goTo(index) {
+      current = ((index % totalSlides) + totalSlides) % totalSlides;
+      track.style.transform = "translateX(-" + (current * 100) + "%)";
+      counter.textContent = String(current + 1);
+
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle("bg-secondary", i === current);
+        dot.classList.toggle("shadow-[0_0_8px_rgba(195,28,150,0.6)]", i === current);
+        dot.classList.toggle("scale-125", i === current);
+        dot.classList.toggle("bg-white/30", i !== current);
+      });
+    }
+
+    prevBtn.addEventListener("click", function () { goTo(current - 1); });
+    nextBtn.addEventListener("click", function () { goTo(current + 1); });
+
+    dots.forEach(function (dot) {
+      dot.addEventListener("click", function () {
+        goTo(Number(dot.dataset.index));
+      });
+    });
+
+    var touchStartX = 0;
+    track.addEventListener("touchstart", function (e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    track.addEventListener("touchend", function (e) {
+      var diff = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+    }, { passive: true });
+
+    var carousel = document.getElementById("pk-carousel");
+    if (carousel) {
+      carousel.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") goTo(current - 1);
+        if (e.key === "ArrowRight") goTo(current + 1);
+      });
+    }
+
+    if (!lightbox || !lightboxImg || !lightboxClose || !lightboxCounter) return;
+
+    function openLightbox(index) {
+      lightboxIndex = index;
+      updateLightboxImage();
+      lightbox.classList.remove("hidden");
+      lightbox.classList.add("flex");
+      document.body.style.overflow = "hidden";
+      lightboxClose.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.add("hidden");
+      lightbox.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+
+    function updateLightboxImage() {
+      var img = carouselImages[lightboxIndex];
+      if (!img) return;
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightboxImg.style.opacity = "1";
+      lightboxCounter.textContent = (lightboxIndex + 1) + " / " + carouselImages.length;
+    }
+
+    function lightboxGo(direction) {
+      lightboxIndex = ((lightboxIndex + direction) % carouselImages.length + carouselImages.length) % carouselImages.length;
+      lightboxImg.style.opacity = "0";
+      setTimeout(updateLightboxImage, 200);
+    }
+
+    carouselImages.forEach(function (img) {
+      img.addEventListener("click", function () { openLightbox(Number(img.dataset.lightboxIndex)); });
+    });
+
+    lightboxClose.addEventListener("click", closeLightbox);
+    if (lightboxBackdrop) lightboxBackdrop.addEventListener("click", closeLightbox);
+    if (lightboxPrev) lightboxPrev.addEventListener("click", function () { lightboxGo(-1); });
+    if (lightboxNext) lightboxNext.addEventListener("click", function () { lightboxGo(1); });
+
+    document.addEventListener("keydown", function (e) {
+      if (lightbox.classList.contains("hidden")) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") lightboxGo(-1);
+      if (e.key === "ArrowRight") lightboxGo(1);
+    });
+  });
+</script>
+
+<style>
+  @keyframes glow-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+</style>

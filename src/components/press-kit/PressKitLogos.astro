@@ -1,0 +1,61 @@
+---
+interface Props {
+  heading: string;
+}
+
+const { heading } = Astro.props;
+
+const logos = [
+  {
+    label: "Space Diva",
+    webp: "/images/press-kit/logos/spacediva-logo.webp",
+    download: "/images/SpaceDiva_Logo.png",
+  },
+  {
+    label: "Rave Team",
+    webp: "/images/press-kit/logos/raveteam-logo.webp",
+    download: "/images/press-kit/logos/raveteam-logo.png",
+  },
+];
+---
+
+<section class="mb-14">
+  <h2
+    class="font-luckiest-guy text-section-title theme-shadow-text text-white mb-6"
+  >
+    {heading}
+  </h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    {
+      logos.map((logo) => (
+        <div class="group relative">
+          <div class="absolute inset-0 translate-x-[5px] translate-y-[5px] bg-black/30 rounded-lg" />
+          <div class="relative bg-white rounded-lg p-8 flex flex-col items-center gap-4 border-[3px] border-white transition-transform duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5">
+            <img
+              src={logo.webp}
+              alt={`${logo.label} Logo`}
+              class="max-h-32 w-auto object-contain"
+            />
+            <a
+              href={logo.download}
+              download
+              class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-bold tracking-wider font-luckiest-guy shadow-[3px_3px_0_rgba(0,0,0,1)] hover:-translate-x-px hover:-translate-y-px hover:shadow-[5px_5px_0_rgba(0,0,0,1)] transition-all duration-150"
+              style="clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+              >
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+              </svg>
+              {logo.label} PNG
+            </a>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
