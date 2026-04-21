@@ -1,14 +1,25 @@
+---
+import type { SupportedLang } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
 <section
   id="about"
   class="max-w-6xl flex flex-col-reverse w-full mx-auto px-4 text-white py-24 lg:items-center lg:grid lg:grid-cols-2 gap-x-16 gap-y-32 scroll-mt-16"
 >
   <hgroup class="px-6 lg:px-0 lg:justify-self-center">
-    <h2 class="text-section-title font-luckiest-guy">About Us</h2>
+    <h2 class="text-section-title font-luckiest-guy">
+      {t("about.title") as string}
+    </h2>
     <p class="max-w-xs">
-      Rave Team is an emerging Spanish studio focused on creating
-      unconventional, wild, and deranged narrative experiences. We blend the
-      glamour of pop culture with the rebelliousness of urban culture to bring
-      innovative stories to the video game industry.
+      {t("about.description") as string}
     </p>
   </hgroup>
 

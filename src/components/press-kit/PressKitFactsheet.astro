@@ -1,0 +1,113 @@
+---
+import type { SupportedLang } from "../../i18n/ui";
+import { useTranslations } from "../../i18n/utils";
+import Instagram from "../ui/Instagram.astro";
+import Tiktok from "../ui/Tiktok.astro";
+import Youtube from "../ui/Youtube.astro";
+import Bluesky from "../ui/Bluesky.astro";
+import Link from "../Link.astro";
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const factsheetItems = [
+  {
+    label: t("presskit.sidebar.developer") as string,
+    value: "Rave Team",
+    icon: "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5",
+  },
+  {
+    label: t("presskit.sidebar.publisher") as string,
+    value: "Rave Team",
+    icon: "M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z",
+  },
+  {
+    label: t("presskit.sidebar.platforms") as string,
+    value: "PC (Win, Mac, Linux)",
+    icon: "M20 16V7a2 2 0 00-2-2H6a2 2 0 00-2 2v9m16 0H4m16 0l1.28 2.55a1 1 0 01-.9 1.45H3.62a1 1 0 01-.9-1.45L4 16",
+  },
+  {
+    label: t("presskit.sidebar.contact") as string,
+    value: "contact@raveteam.games",
+    href: "mailto:contact@raveteam.games",
+    icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+  },
+];
+
+const socials = [
+  { name: "Instagram", href: "https://www.instagram.com/raveteamgames/" },
+  { name: "TikTok", href: "https://www.tiktok.com/@raveteamgames" },
+  { name: "YouTube", href: "https://www.youtube.com/@raveteamgames" },
+  { name: "Bluesky", href: "https://bsky.app/profile/raveteamgames.bsky.social" },
+];
+---
+
+<div>
+  <div class="h-[4px] rainbow-border"></div>
+
+  <div class="bg-primary border-b border-white/10 py-8 lg:py-10">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col gap-8">
+      <dl
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+      >
+        {
+          factsheetItems.map((item) => (
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center gap-2.5">
+                <svg
+                  class="w-4 h-4 text-[#00FFF9] shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path d={item.icon} />
+                </svg>
+                <dt class="text-[#00FFF9] font-bold text-xs uppercase tracking-[0.2em]">
+                  {item.label}
+                </dt>
+              </div>
+              <dd class="text-white/90 text-base pl-[26px]">
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    class="relative inline-block text-white hover:text-secondary transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:w-0 after:bg-secondary after:transition-all after:duration-300 hover:after:w-full"
+                  >
+                    {item.value}
+                  </a>
+                ) : (
+                  item.value
+                )}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <!-- Social Media Icons -->
+      <div class="flex flex-col items-start sm:items-center gap-3">
+        <span class="text-[#00FFF9] font-bold text-xs uppercase tracking-[0.2em]">
+          {t("presskit.sidebar.social") as string}
+        </span>
+        <div class="flex items-center gap-4">
+          <Link external aria-label="Instagram" to={socials[0].href} class="text-white/80 hover:text-white transition-colors duration-200">
+            <Instagram width={22} height={22} />
+          </Link>
+          <Link external aria-label="TikTok" to={socials[1].href} class="text-white/80 hover:text-white transition-colors duration-200">
+            <Tiktok width={22} height={22} />
+          </Link>
+          <Link external aria-label="YouTube" to={socials[2].href} class="text-white/80 hover:text-white transition-colors duration-200">
+            <Youtube width={28} height={22} />
+          </Link>
+          <Link external aria-label="Bluesky" to={socials[3].href} class="text-white/80 hover:text-white transition-colors duration-200">
+            <Bluesky width={22} height={22} />
+          </Link>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

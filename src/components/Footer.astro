@@ -4,6 +4,15 @@ import Bluesky from "./ui/Bluesky.astro";
 import Youtube from "./ui/Youtube.astro";
 import Tiktok from "./ui/Tiktok.astro";
 import Instagram from "./ui/Instagram.astro";
+import type { SupportedLang } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang?: SupportedLang;
+}
+
+const { lang = "en" } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <footer
@@ -12,7 +21,7 @@ import Instagram from "./ui/Instagram.astro";
 >
   <div class="flex gap-x-4 items-center justify-center">
     <div class="group relative">
-      <Link external aria-label="Instagram logo icon" to="https://www.instagram.com/raveteamgames/" class="social-icon">
+      <Link external aria-label="Instagram" to="https://www.instagram.com/raveteamgames/" class="social-icon">
         <Instagram />
       </Link>
       <span
@@ -25,7 +34,7 @@ import Instagram from "./ui/Instagram.astro";
     </div>
 
     <div class="group relative">
-      <Link external aria-label="Tiktok logo icon" to="https://www.tiktok.com/@raveteamgames" class="social-icon">
+      <Link external aria-label="TikTok" to="https://www.tiktok.com/@raveteamgames" class="social-icon">
         <Tiktok />
       </Link>
       <span
@@ -38,7 +47,7 @@ import Instagram from "./ui/Instagram.astro";
     </div>
 
     <div class="group relative">
-      <Link external aria-label="Youtube logo icon" to="https://www.youtube.com/@raveteamgames" class="social-icon">
+      <Link external aria-label="YouTube" to="https://www.youtube.com/@raveteamgames" class="social-icon">
         <Youtube />
       </Link>
       <span
@@ -51,7 +60,7 @@ import Instagram from "./ui/Instagram.astro";
     </div>
 
     <div class="group relative">
-      <Link external aria-label="Bluesky logo icon" to="https://bsky.app/profile/raveteamgames.bsky.social" class="social-icon">
+      <Link external aria-label="Bluesky" to="https://bsky.app/profile/raveteamgames.bsky.social" class="social-icon">
         <Bluesky />
       </Link>
       <span
@@ -67,7 +76,7 @@ import Instagram from "./ui/Instagram.astro";
   <p
     class="flex gap-2 items-center place-content-center w-fit font-bold text-sm"
   >
-    Designed and Developed by
+    {t("footer.credit") as string}
     <Link
       external
       to="https://discord.com/invite/comuafor"
